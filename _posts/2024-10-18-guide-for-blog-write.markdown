@@ -13,6 +13,24 @@ tags:
 본 포스팅은 더아이엠씨 AI 블로그 작성을 위해 반드시 작성해야하는 layout 작성법을 서술하였습니다. 작성중인 마크다운 문서에 layout을 첫줄부터 입력한 후 본 글을 시작합니다.
 <!--more-->
 
+## 블로그 작성
+### 블로그 문법 및 파일 이름 구성
+블로그 글은 마크다운 문법을 따르며 확장자는 `.markdown` 으로 지정합니다. 블로그 글 파일 예시는 `2024-10-18-guide-for-blog-write.markdown` 과 같습니다. 
+
+### 블로그 및 이미지 작성 위치
+`/_posts` 디렉션 아래 파일 블로그 글을 위치시킵니다. 만약, 이미지가 있을 경우 `/images/{아이디}`아래에 위치시키고 사용합니다.
+
+### 마크 다운 문법 사용 예시 
+olvimama 블로그(한글)
+  
+[https://olvimama.github.io/post/](https://olvimama.github.io/post/) # 웹사이트<br>
+[https://github.com/olvimama/olvimama.github.io/tree/master/_posts](https://github.com/olvimama/olvimama.github.io/tree/master/_posts) # 마크다운 코드
+
+so-simple-theme 블로그(영문) 
+
+[https://mmistakes.github.io/so-simple-theme/posts/](https://mmistakes.github.io/so-simple-theme/posts/) # 웹사이트<br>
+[https://github.com/mmistakes/so-simple-theme/tree/master/docs/_posts](https://github.com/mmistakes/so-simple-theme/tree/master/docs/_posts) # 마크다운 코드
+
 ## layout 작성법
 ### 개요 및 작성 예시
 작성한 그대로 보여지진 않지만 타이틀, 날짜, 저자 등 전면 정보를 테마에 적용된 룰을 준수하여 웹사이트에 표시 됩니다. 반드시 첫줄부터 작성해야 하며, 본 포스팅에 사용된 예시는 아래와 같습니다.
@@ -69,19 +87,5 @@ excerpt_separator: "<!--more-->"
 ---
 ```
 
-## [참고1] 마크다운 문서 작성시 참고 할 수 있는 사이트
-
-olvimama 블로그(한글)
-  
-[https://olvimama.github.io/post/](https://olvimama.github.io/post/) # 웹사이트
-[https://github.com/olvimama/olvimama.github.io/tree/master/_posts](https://github.com/olvimama/olvimama.github.io/tree/master/_posts) # 마크다운 코드
-
-so-simple-theme 블로그(영문) 
-
-[https://mmistakes.github.io/so-simple-theme/posts/](https://mmistakes.github.io/so-simple-theme/posts/) # 웹사이트
-[https://github.com/mmistakes/so-simple-theme/tree/master/docs/_posts](https://github.com/mmistakes/so-simple-theme/tree/master/docs/_posts) # 마크다운 코드
-
-
-
-## [참고2] 
+## [참고] 
 미결정 현황 : tag와 catgories 기능이 있고 각 기능을 사용할지 사용한다면 어떤 목적으로 사용할지 등을 논의해야할 필요성이 있음
