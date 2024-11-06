@@ -1,0 +1,13 @@
+# Sample Authors
+# Remove file or replace with your own
+
+Jin:
+  name: Jin
+  picture: /images/jin/jin_profile.jpg
+  position: R&M teamleader
+  description: 다양한 산업에 AI 모델을 이식하기 위한 테스트 기획 및 수행을 담당하고 있습니다.
+
+Jhk:
+  name: jhk
+  picture: /images/jhk/jhk_profile.jpg
+  description: data scientist

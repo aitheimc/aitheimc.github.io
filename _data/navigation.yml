@@ -1,0 +1,17 @@
+# Sample site navigation bar links
+
+- title: Home
+  url: /
+# - title: Post
+#   url: /post/
+# - title: Category
+#   url: /category/
+# - title: Tag
+#   url: /tag/
+# - title: Recipes
+#   url: /recipes/z
+- title: AI TOM
+  url: https://aitom.co.kr/
+- title: Search
+  url: /search/
+
