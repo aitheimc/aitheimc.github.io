@@ -17,6 +17,15 @@ layout: default
         {% else %}
           <h1 id="page-title" class="page-title">{{ title }}</h1>
         {% endif %}
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PRCBSBTR5H"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-PRCBSBTR5H');
+        </script>
       </header>
       <div class="page-content">
         {{ content }}
