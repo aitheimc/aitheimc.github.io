@@ -30,7 +30,7 @@ tags:
 <br>
 
 
-<img src="images/bjy/original_graph.png" width="700" height="300" alt="지표">
+<img src="../images/bjy/original_graph.png" width="700" height="300" alt="지표">
 
 <center>- 그림 1 : 취업자 수와 경제활동인구 수 추이 -</center>
 
