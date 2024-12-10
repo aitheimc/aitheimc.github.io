@@ -23,6 +23,12 @@ tags:
 ## [본론]
 ### 1. 개발 목표
 
+<style>
+  th {
+    text-align: center;
+  }
+</style>
+
 <div style="text-align: center">
 <img src="../images/bjy/original_graph.png" width="1000" height="300" alt="지표">
 
