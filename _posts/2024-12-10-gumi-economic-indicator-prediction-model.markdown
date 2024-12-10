@@ -199,7 +199,6 @@ tags:
 
 - 위의 프롬프트를 활용하여 시계열 모델과 동일하게 1시점 예측을 수행
 
-
 <br>
 
 <img src="../images/bjy/llm_man_prediction.png" width="700" height="200" alt="llm남자">
