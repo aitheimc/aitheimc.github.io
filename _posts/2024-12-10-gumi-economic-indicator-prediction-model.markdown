@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 구미시 경제활동지표 예측 모델 개발
-date:   2024-12-10
+date: 2024-12-10
 author: bjy
 excerpt_separator: "<!--more-->"
 tags:
