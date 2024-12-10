@@ -12,6 +12,8 @@ tags:
 
 산업안전보험공단과 함께한 DB 구축용 연구 사업을 통해, 비정형데이터 전처리에 GPT를 기반으로한 LLM의 활용성에 대해서 설명합니다.
 
+<!--more-->
+
 # <center>LLM을 활용한 비정형 데이터 전처리</center>
 ####  <center>keyword : LLM, GPT, 비정형데이터</center>
 
@@ -22,8 +24,6 @@ tags:
 - 비정형 데이터 정형화에 대한 코딩 방식과 LLM 활용의 차이점을 비교
 
 - 향후 유사 사업 제안에서 LLM을 활용한 기술 제안 방식을 공유하기 위해 주제 선정
-
-<!--more-->
 
 <br>
 
@@ -205,9 +205,6 @@ tags:
 
 </div>
 
-
----
-
 ```
 Input Text Parsing Rules:
 Extract and organize chemical information into structured JSON following the provided structure and rules. Handle multiple substances and mixtures according to these guidelines.
@@ -270,8 +267,6 @@ Example Output:
 Remember this rule and if user give you input, answer with output, without Explanation
 ```
 
----
-
 <center> - 프롬프트 문 - </center>
 
 <br>
@@ -285,6 +280,7 @@ Input :
 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
 
 Output
+
 ```
 [
   {
@@ -304,6 +300,7 @@ Input :
 이염화1-[2-[에틸[4-[4-[4-[에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤조일아미노]페닐아조]-3-메틸페닐]아미노]에틸]피리디늄[ 1 - [ 2 - [ Ethyl[4-[4-[4-[ethyl(2-pyridinoethyl)amino]-2-m ethylphenylazo]benzoylamino]phenylazo]-3-methylphenyl]a mino]ethyl]pyridinium dichloride; 163831-67-2] 및 이를 25% 이상 함유한 혼합물
 
 Output
+
 ```
 [
   {
@@ -323,6 +320,7 @@ Input :
 수산화 세트리모늄[Cetrimonium hydroxide; 505-86-2]과 세트리모늄 염류[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물
 
 Output
+
 ```
 [
   {
@@ -360,6 +358,7 @@ Input :
 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
 
 Output
+
 ```
 [
   {
@@ -379,6 +378,7 @@ Input :
 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
 
 Output
+
 ```
 [
   {
@@ -398,6 +398,7 @@ Input :
 산화니켈 및 황화니켈류[Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2]와 그 중 하나를 0.1% 이상 함유한 혼합물
 
 Output
+
 ```
 [
   {
@@ -425,7 +426,7 @@ Output
 
 <br>
 
-▷ 하지만 기존의 화학물질과는 더 큰 예외 특성을 가지고 있는 데이터는 전처리가 불완전한 것을 확인함<br>
+▷ 하지만 기존의 화학물질과는 더 큰 예외 특  성을 가지고 있는 데이터는 전처리가 불완전한 것을 확인함<br>
  (* 혼합물(CAS 포함), 기타)
 
 ▷ 이러한 데이터를 전처리하기 위해서는 프롬프트에 규칙이나 예시를 더 추가하는 방법이 있으나 이럴 경우 프롬프트가 복잡해지고 직관성이 떨어짐 
