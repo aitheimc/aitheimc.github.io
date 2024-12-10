@@ -11,8 +11,11 @@ tags:
 ---
 <br>
 
+---
 # <br> <center>구미시 경제활동지표 예측 모델 개발</center> <br>
 ####  <center>keyword : timeseries, forecast, LLM</center>
+<!--more-->
+---
 
 ---
 ## [배경]
