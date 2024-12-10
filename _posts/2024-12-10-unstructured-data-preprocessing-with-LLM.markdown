@@ -2,11 +2,15 @@
 layout: post
 title:  "LLM을 활용한 비정형 데이터 전처리"
 date:   2024-12-10 00:00:00 +0900
-author: Jhk
+author: Ljh
+excerpt_separator: "<!--more-->"
+tags:
+    - LLM
+    - GPT
+    - 비정형데이터
 ---
-<br>
 
-# <br> <center>LLM을 활용한 비정형 데이터 전처리</center> <br>
+# <center>LLM을 활용한 비정형 데이터 전처리</center>
 ####  <center>keyword : LLM, GPT, 비정형데이터</center>
 
 ---
@@ -17,6 +21,8 @@ author: Jhk
 
 - 향후 유사 사업 제안에서 LLM을 활용한 기술 제안 방식을 공유하기 위해 주제 선정
 
+<!--more-->
+
 <br>
 
 ---
@@ -26,8 +32,7 @@ author: Jhk
 
 <br>
 
-
-![12321](./241210_jh_01.png)
+<img src="../images/ljh/state_of_the_government.png" width="636" height="777" alt="현황">
 
 <center>- 그림 1 : 데이터 공유 플랫폼 구축 계획 -</center>
 
@@ -45,30 +50,60 @@ author: Jhk
 
 ### 2. 코딩 방식 한계
 
+
+<div style="text-align: center">
+
 <center>
 
-|    **고유번호**   | **화학 물질의 명칭** |
-| :-----------: | :-----------: |
-  97-1-119 | 비소[Arsenic; 7440-38-2]와 그 화합물 및 이를 0.1% 이상 함유한 혼합물 |
+<table>
+ <tr>
+   <th>고유번호</th>
+   <th>화학 물질의 명칭</th>
+ </tr>
+ <tr>
+   <td>97-1-119</td>
+   <td>비소[Arsenic; 7440-38-2]와 그 화합물 및 이를 0.1% 이상 함유한 혼합물</td>
+ </tr>
+
+</table>
+
+<p style="text-align: center"> - 표 1 : 데이터 예시 - </p>
 
 </center>
 
-<center>- 표 1 : 데이터 예시 -</center>
+</div>
 
 <center>▼</center>
 
+<div style="text-align: center">
+
 <center>
 
-|    **고유번호**   | **한글명** | **영문명** | **CAS** | **혼합물 기준** |
-| :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
-|97-1-119|비소|Arsenic|7440-38-2|0.1%|
+<table>
+ <tr>
+   <th>고유번호</th>
+   <th>한글명</th>
+   <th>영문명</th>
+   <th>CAS</th>
+   <th>혼합물 기준</th>
+ </tr>
+ <tr>
+   <td>97-1-119</td>
+   <td>비소</td>
+   <td>Arsenic</td>
+   <td>7440-38-2</td>
+   <td>0.1%</td>
+ </tr>
+</table>
 
 </center>
 
-<center>- 표 2 : 데이터 전처리 예시 -</center>
+<p style="text-align: center"> - 표 2 : 데이터 전처리 예시 - </p>
+</div>
+
 <br>
 
-▷ 기존의 자료는 하나의 셀 안에 여러 개의 정보를 포함<br>
+▷ 기존의 자료는 하나의 셀 안에 여러 개의 정보를 포함
 
 ▷ 이를 정규화하기 위해 “[”를 기준으로 앞에는 한글명, “;” 앞에는 영문명 등 기준으로 코드를 작성해서 전처리함
 
@@ -80,21 +115,56 @@ author: Jhk
 
 ### 3. LLM
 
+<div style="text-align: center">
+
 <center>
 
-|    **구분**   |    **예시**   |
-| :-----------: | :-----------: |
-|비고 정보 포함|무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. <span style='background-color:#F7DD'>다만, 베를린청(Ferric ferrocyanide), ...</span>|
-|명칭에 대괄호 기호 포함|이염화1-<span style='background-color:#F7DD'>[2-[에틸[4-[4-[4-[</span>에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤|
-|혼합물 기준이 없는 경우|인독사캅[Indoxacarb; 173584-44-6]. 다만, 이를 함유한 혼합물은 제외|
-|이명 정보 포함|브로노폴[<span style='background-color:#F7DD'>Bronopol; 2-Bromo-2-nitro-1,3-propanediol</span>; 52-51-7] 및 이를 2.5% 이상 함유한 혼합물|
-|영문명 및 CAS가 복수|에피클로로히드린[<span style='background-color:#F7DD'>Epichlorohydrin; 1-Chloro-2,3-epoxypropane; 2-(Chloromethyl)oxirane; 106-89-8, 51594-55-9, 67843-74-7</span>] 및 이를 0.1% 이상 함유한 혼합물|
-|한 행의 다수에 물질 정보 포함|<span style='background-color:#F7DD'>수산화 세트리모늄</span>[Cetrimonium hydroxide; 505-86-2]과 <span style='background-color:#F7DD'>세트리모늄 염류</span>[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물|
-|혼합물(CAS 미포함)|산화 트리헥실포스핀, 산화 트리-n-옥틸포스핀, 산화 디옥틸 모노옥틸 디헥실포스핀의 <span style='background-color:#F7DD'>혼합물[Mixture</span> of trihexylphosphine oxide, tri-n-octylphoshine oxide, dioctyl monooctyl dihexylphosphine oxide] 및 이를 25% 이상 함유한 혼합물|
-|혼합물(CAS 포함)|2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물[Mixture of 2-[[(3-ethenylphenyl)methoxy]methyl]oxirane(<span style='background-color:#F7DD'>113538-79-7</span>) and 2-[[(4-ethenylphenyl)methoxy]methyl]oxirane<span style='background-color:#F7DD'>(113538-80-0); 부여안됨</span>] 및 이를 1% 이상 함유한 혼합물|
-|기타|산화니켈 및 황화니켈류[<span style='background-color:#F7DD'>Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2</span>]와 그 중 하나를 0.1% 이상 함유한 혼합물|
+<table>
+ <tr>
+   <th>구분</th>
+   <th>예시</th>
+ </tr>
+ <tr>
+   <td>비고 정보 포함</td>
+   <td>무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. <span style='background-color:#F7DD'>다만, 베를린청(Ferric ferrocyanide), ...</span></td>
+ </tr>
+ <tr>
+   <td>명칭에 대괄호 기호 포함</td>
+   <td>이염화1-<span style='background-color:#F7DD'>[2-[에틸[4-[4-[4-[</span>에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤</td>
+ </tr>
+ <tr>
+   <td>혼합물 기준이 없는 경우</td>
+   <td>인독사캅[Indoxacarb; 173584-44-6]. 다만, 이를 함유한 혼합물은 제외</td>
+ </tr>
+ <tr>
+   <td>이명 정보 포함</td>
+   <td>브로노폴[<span style='background-color:#F7DD'>Bronopol; 2-Bromo-2-nitro-1,3-propanediol</span>; 52-51-7] 및 이를 2.5% 이상 함유한 혼합물</td>
+ </tr>
+ <tr>
+   <td>영문명 및 CAS가 복수</td>
+   <td>에피클로로히드린[<span style='background-color:#F7DD'>Epichlorohydrin; 1-Chloro-2,3-epoxypropane; 2-(Chloromethyl)oxirane; 106-89-8, 51594-55-9, 67843-74-7</span>] 및 이를 0.1% 이상 함유한 혼합물</td>
+ </tr>
+ <tr>
+   <td>한 행의 다수에 물질 정보 포함</td>
+   <td><span style='background-color:#F7DD'>수산화 세트리모늄</span>[Cetrimonium hydroxide; 505-86-2]과 <span style='background-color:#F7DD'>세트리모늄 염류</span>[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물</td>
+ </tr>
+ <tr>
+   <td>혼합물(CAS 포함)</td>
+   <td>2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물[Mixture of 2-[[(3-ethenylphenyl)methoxy]methyl]oxirane(<span style='background-color:#F7DD'>113538-79-7</span>) and 2-[[(4-ethenylphenyl)methoxy]methyl]oxirane<span style='background-color:#F7DD'>(113538-80-0); 부여안됨</span>] 및 이를 1% 이상 함유한 혼합물</td>
+ </tr>
+ <tr>
+   <td>혼합물(CAS 미포함)</td>
+   <td>산화 트리헥실포스핀, 산화 트리-n-옥틸포스핀, 산화 디옥틸 모노옥틸 디헥실포스핀의 <span style='background-color:#F7DD'>혼합물[Mixture</span> of trihexylphosphine oxide, tri-n-octylphoshine oxide, dioctyl monooctyl dihexylphosphine oxide] 및 이를 25% 이상 함유한 혼합물</td>
+ </tr>
+ <tr>
+   <td>기타</td>
+   <td>산화니켈 및 황화니켈류[<span style='background-color:#F7DD'>Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2</span>]와 그 중 하나를 0.1% 이상 함유한 혼합물</td>
+ </tr>
 
-<center> - 표 3 : 예외 예시 - </center>
+</table>
+
+<p style="text-align: center"> - 표 3 : 예외 예시 - </p>
+</div>
 
 <br>
 
@@ -105,16 +175,34 @@ author: Jhk
 ▷ 데이터 전처리는 Chat-GPT에게 규칙을 작성한 뒤, 코딩 방식에서 전처리 하지 못한 데이터들 중 대표적인 오류들을 Input 으로 Output 값을 확인하는 방식으로 진행함 
 
 
+<div style="text-align: center">
+
 <center>
 
-|    **고유번호**   | **화학 물질의 명칭** |
-| :-----------: | :-----------: |
- Output Formatting Prompting | 출력 결과물에 대한 형태 명시 |
- Directional Stimulus Prompting | 문제 해결을 위한 힌트를 제시 |
- One-Shot Prompting | 입력물과 결과물에 대한 예시 1개 제공 <br> (* 없으면 Zero, 2개 이상이면 Few) |
+<table>
+ <tr>
+   <th>명칭</th>
+   <th>설명</th>
+ </tr>
+ <tr>
+   <td>Output Formatting Prompting</td>
+   <td>출력 결과물에 대한 형태 명시</td>
+ </tr>
+ <tr>
+   <td>Directional Stimulus Prompting</td>
+   <td>문제 해결을 위한 힌트를 제시</td>
+ </tr>
+ <tr>
+   <td>One-Shot Prompting</td>
+   <td>입력물과 결과물에 대한 예시 1개 제공 <br> (* 없으면 Zero, 2개 이상이면 Few)</td>
+ </tr>
+</table>
 
-<center> - 표 4 : 프롬프팅 기술 - </center>
+<p style="text-align: center"> - 표 4 : 프롬프팅 기술 - </p>
  </center>
+
+</div>
+
 
 ---
 ```
@@ -188,6 +276,7 @@ Remember this rule and if user give you input, answer with output, without Expla
 <br>
 
 ---
+
 Input : 
 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
 
@@ -223,8 +312,10 @@ Output
 ]
 ```
 ---
+
 Input : 
 수산화 세트리모늄[Cetrimonium hydroxide; 505-86-2]과 세트리모늄 염류[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물
+
 Output
 ```
 [
@@ -257,6 +348,7 @@ Output
 ▷ 특히 '한 행의 다수에 물질 정보 포함된 경우'처럼 복잡한 구조의 데이터도 분리하여 전처리하는 것을 확인 가능함
 
 ---
+
 Input : 
 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
 
@@ -275,6 +367,7 @@ Output
 ```
 
 ---
+
 Input : 
 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
 
@@ -292,6 +385,7 @@ Output
 ]
 ```
 ---
+
 Input : 
 산화니켈 및 황화니켈류[Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2]와 그 중 하나를 0.1% 이상 함유한 혼합물
 
@@ -331,14 +425,8 @@ Output
 ####  <center>[결론]</center>
 - 공공기관의 데이터 정형화 사업은 시장성이 높은 사업이지만 기존 데이터들의 품질 문제에 단순 코드 방식으로는 사업 수행의 한계가 있음
 
-<br>
-
 - LLM은 코딩 방식에 비해 전처리 작업을 위한 직관성과 성능 모두 높아 효율적임
 
-<br>
-
 - 다만, LLM 또한 완벽하지 않으며 성능을 높이기 위해서 프롬프트 문이 복잡해질 필요성이 있음
-
-<br>
 
 ---
