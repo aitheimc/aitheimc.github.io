@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "LLM을 활용한 비정형 데이터 전처리"
-date:   2024-12-10 00:00:00 +0900
+title:  LLM을 활용한 비정형 데이터 전처리
+date:   2024-12-10
 author: Ljh
 excerpt_separator: "<!--more-->"
 tags:
@@ -9,6 +9,8 @@ tags:
     - GPT
     - 비정형데이터
 ---
+
+산업안전보험공단과 함께한 DB 구축용 연구 사업을 통해, 비정형데이터 전처리에 GPT를 기반으로한 LLM의 활용성에 대해서 설명합니다.
 
 # <center>LLM을 활용한 비정형 데이터 전처리</center>
 ####  <center>keyword : LLM, GPT, 비정형데이터</center>
@@ -205,6 +207,7 @@ tags:
 
 
 ---
+
 ```
 Input Text Parsing Rules:
 Extract and organize chemical information into structured JSON following the provided structure and rules. Handle multiple substances and mixtures according to these guidelines.
@@ -266,6 +269,7 @@ Example Output:
 
 Remember this rule and if user give you input, answer with output, without Explanation
 ```
+
 ---
 
 <center> - 프롬프트 문 - </center>
@@ -293,6 +297,7 @@ Output
   }
 ]
 ```
+
 ---
 
 Input : 
@@ -311,6 +316,7 @@ Output
   }
 ]
 ```
+
 ---
 
 Input : 
@@ -337,6 +343,7 @@ Output
   }
 ]
 ```
+
 ---
 
 <center> - 전처리 성공 예시 - </center>
@@ -384,6 +391,7 @@ Output
   }
 ]
 ```
+
 ---
 
 Input : 
@@ -410,6 +418,7 @@ Output
   }
 ]
 ```
+
 ---
 
 <center> - 전처리 실패 예시 - </center>
