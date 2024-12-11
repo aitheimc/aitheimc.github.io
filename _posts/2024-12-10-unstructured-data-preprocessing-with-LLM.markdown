@@ -10,21 +10,21 @@ tags:
     - 비정형데이터
 ---
 
-산업안전보험공단과 함께한 DB 구축용 연구 사업을 통해, 비정형데이터 전처리에 GPT를 기반으로한 LLM의 활용성에 대해서 설명합니다.
+비정형 데이터 전처리를 통한 DB 구축 과정에서, 비정형데이터 전처리에 GPT를 기반으로한 LLM의 활용성에 대해서 설명합니다.
 
 <!--more-->
 
-# <center>LLM을 활용한 비정형 데이터 전처리</center>
-####  <center>keyword : LLM, GPT, 비정형데이터</center>
-
 ---
+
+# <center>LLM을 활용한 비정형 데이터 전처리</center>
+
 ####  <center>[배경]</center>
-- 현재 산업안전보험공단과 국가에서 관리 중인 화학물질 DB 구축 사업을 진행하고 있음
+
+- 비정형 데이터의 전처리와 해당 데이터를 바탕으로한  DB 구축 사업을 진행하고 있음
 
 - 비정형 데이터 정형화에 대한 코딩 방식과 LLM 활용의 차이점을 비교
 
-- 향후 유사 사업 제안에서 LLM을 활용한 기술 제안 방식을 공유하기 위해 주제 선정
-
+- 향후 LLM을 활용한 전처리 기술 제안 방식을 공유하기 위해 주제 선정
 <br>
 
 ---
@@ -205,7 +205,10 @@ tags:
 
 </div>
 
+<br>
+
 ```
+
 Input Text Parsing Rules:
 Extract and organize chemical information into structured JSON following the provided structure and rules. Handle multiple substances and mixtures according to these guidelines.
 
@@ -265,7 +268,10 @@ Example Output:
 ]
 
 Remember this rule and if user give you input, answer with output, without Explanation
+
 ```
+
+<br>
 
 <center> - 프롬프트 문 - </center>
 
@@ -281,7 +287,10 @@ Input :
 
 Output
 
+<br>
+
 ```
+
 [
   {
     "Korean name": "무기시안 화합물",
@@ -292,7 +301,10 @@ Output
     "note": "베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외"
   }
 ]
+
 ```
+
+<br>
 
 ---
 
@@ -301,7 +313,10 @@ Input :
 
 Output
 
+<br>
+
 ```
+
 [
   {
     "Korean name": "이염화1-[2-[에틸[4-[4-[4-[에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤조일아미노]페닐아조]-3-메틸페닐]아미노]에틸]피리디늄",
@@ -313,6 +328,8 @@ Output
   }
 ]
 ```
+
+<br>
 
 ---
 
@@ -342,7 +359,10 @@ Output
 ]
 ```
 
+<br>
+
 ---
+
 
 <center> - 전처리 성공 예시 - </center>
 
@@ -359,6 +379,8 @@ Input :
 
 Output
 
+<br>
+
 ```
 [
   {
@@ -371,6 +393,8 @@ Output
   }
 ]
 ```
+
+<br>
 
 ---
 
@@ -379,6 +403,8 @@ Input :
 
 Output
 
+<br>
+
 ```
 [
   {
@@ -390,7 +416,10 @@ Output
     "note": "부여안됨"
   }
 ]
+
 ```
+
+<br>
 
 ---
 
@@ -399,7 +428,10 @@ Input :
 
 Output
 
+<br>
+
 ```
+
 [
   {
     "Korean name": "산화니켈 및 황화니켈류",
@@ -418,7 +450,10 @@ Output
     "note": ""
   }
 ]
+
 ```
+
+<br>
 
 ---
 
@@ -432,11 +467,13 @@ Output
 ▷ 이러한 데이터를 전처리하기 위해서는 프롬프트에 규칙이나 예시를 더 추가하는 방법이 있으나 이럴 경우 프롬프트가 복잡해지고 직관성이 떨어짐 
 
 ---
+
 ####  <center>[결론]</center>
-- 공공기관의 데이터 정형화 사업은 시장성이 높은 사업이지만 기존 데이터들의 품질 문제에 단순 코드 방식으로는 사업 수행의 한계가 있음
 
-- LLM은 코딩 방식에 비해 전처리 작업을 위한 직관성과 성능 모두 높아 효율적임
+- 공공기관의 데이터 정형화 사업은 시장성이 높은 사업이지만 기존 데이터들의 품질 문제에 단순 코드 방식으로는 사업 수행의 한계가 있음 <br>
 
-- 다만, LLM 또한 완벽하지 않으며 성능을 높이기 위해서 프롬프트 문이 복잡해질 필요성이 있음
+- LLM은 코딩 방식에 비해 전처리 작업을 위한 직관성과 성능 모두 높아 효율적임<br>
+
+- 다만, LLM 또한 완벽하지 않으며 성능을 높이기 위해서 프롬프트 문이 복잡해질 필요성이 있음<br>
 
 ---
