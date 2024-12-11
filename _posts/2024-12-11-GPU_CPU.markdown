@@ -1,18 +1,16 @@
 ---
 layout: post
 title:  "서버 메모리 터짐 현상 관련 정보"
-date:   2024-11-19 00:00:01 +0900
-author: kimyh
-
+date:   2024-12-11 17:05:01 +0900
+author: Kimyh
+excerpt_separator: "<!--more-->"
+tags:
+    - guide
+    - markdown
+    - rule
 ---
 
 
-
-서버 활용 시 간혹 발생하게 되는 서버 터짐으로 인한 현상을 해결하기 위한 방안
-
-
-
-오늘은 감성분석을 업그레이드하게 된 이유와 새로 도입한 모델과의 성능 비교 그리고 향후 발전 방향에 대해 설명드리겠습니다.
 
 # 1. GPU 메모리 확인
 
@@ -54,7 +52,6 @@ def print_memory_usage():
 list 변수에 들어가는 값 또한 메모리를 사용하게 되어 무한대로 축적하는 것은 불가능함
 
 ```python
-
 for i in range(epohcs):
     pred_list = []
     for x, y in dataloader:
