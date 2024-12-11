@@ -18,7 +18,10 @@
 > https://github.com/mmistakes/so-simple-theme
 > https://github.com/olvimama/olvimama.github.io/tree/master
 
-- 커스텀 환경 : 폰트
+### 문서 참고 없이 커스텀한 내용
+
+#### 폰트
+
 `_sass /so-simple /_variables.scss`  파일 내용을 아래 와같이 수정 하였으며, [구글 폰트](https://fonts.google.com/specimen/Nanum+Gothic?lang=ko_Kore)를 활용함.
 
 ```css
@@ -26,10 +29,9 @@ $nanum-gothic-font-family: "Nanum Gothic", sans-serif !default; /* 폰트 패밀
 $title-font-family: $nanum-gothic-font-family !default; /* title-font-family 를 nanum-gothic-font-family로 변경*/
 ```
 
-### 문서 참고 없이 커스텀한 내용
+#### author
 
-- 커스텀 환경 : author
-`includes / page-author.html` 파일에 아래 코드 추가 하여 position, description 레이아웃 추가함
+`_includes / page-author.html` 파일에 아래 코드 추가 하여 position, description 레이아웃 추가함
 
 ```html
 {%- if author.position -%}
@@ -48,5 +50,10 @@ $title-font-family: $nanum-gothic-font-family !default; /* title-font-family 를
 ```html
  {% if site.data.text[site.locale].by %}<em>{{ site.data.text[site.locale].by }}</em> {% endif %}<span class="p-name"><b>{{ author.name }}</b></span>
 ```
+
+#### GA(google analysis) 코드 삽입
+
+`_layouts / page.html` 내 header 사이에 구글 script 문구를 삽입하고, _config.yml 파일에 UA 입력
+
 
 ⚠️ **Warning:** 블로그 글을 작성하다가, IP, 비밀번호 등 중요한 정보가 어느 브랜치든 실수로 업로드 되면 레포지토리를 폭파시키고 다시 만들어야 하니 반드시 공유해주세요. 리포지토리를 폭파시키고 다시 만들면 `collaborator` 초대 작업만 다시 하면 됩니다.
