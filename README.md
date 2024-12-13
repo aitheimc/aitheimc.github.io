@@ -15,7 +15,9 @@
 
 - so-simple-theme 사용법은 아래 블로그를 통해 확인할 수 있습니다.
 > https://olvimama.github.io/blog/gitpages-about-so-simple-theme
+
 > https://github.com/mmistakes/so-simple-theme
+
 > https://github.com/olvimama/olvimama.github.io/tree/master
 
 ### 문서 참고 없이 커스텀한 내용
