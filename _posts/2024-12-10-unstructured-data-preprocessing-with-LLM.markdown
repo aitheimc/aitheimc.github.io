@@ -177,7 +177,6 @@ tags:
 
 ▷ 데이터 전처리는 Chat-GPT에게 규칙을 작성한 뒤, 코딩 방식에서 전처리 하지 못한 데이터들 중 대표적인 오류들을 Input 으로 Output 값을 확인하는 방식으로 진행함 
 
-
 <div style="text-align: center">
 
 <center>
