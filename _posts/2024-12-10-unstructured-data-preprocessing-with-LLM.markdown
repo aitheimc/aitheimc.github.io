@@ -166,11 +166,12 @@ tags:
 </table>
 
 <p style="text-align: center"> - 표 3 : 예외 예시 - </p>
+
+</center>
+
 </div>
 
 <br>
-
-</center>
 
 ▷ 기존 코딩 방식의 한계를 회피하기 위해서 Chat-GPT 를 활용해 데이터 전처리를 진행함
 
@@ -267,11 +268,14 @@ Example Output:
 Remember this rule and if user give you input, answer with output, without Explanation
 ```
 
+<br>
+
 <center> - 프롬프트 문 - </center>
 
 <br>
 
-▷ 프롬프팅 기술은 Output Formatting, Dircetional Stimulus, One-Shot 등 간단한 기술을 사용함 <br>
+
+▷ 프롬프팅 기술은 Output Formatting, Dircetional Stimulus, One-Shot 등 간단한 기술을 사용함
 <br>
 
 ---
@@ -433,9 +437,11 @@ Output
 
 ▷ 이러한 데이터를 전처리하기 위해서는 프롬프트에 규칙이나 예시를 더 추가하는 방법이 있으나 이럴 경우 프롬프트가 복잡해지고 직관성이 떨어짐 
 
----
 
-####  <center>[결론]</center>
+----
+
+
+###  <center>[결론]</center>
 
 - 공공기관의 데이터 정형화 사업은 시장성이 높은 사업이지만 기존 데이터들의 품질 문제에 단순 코드 방식으로는 사업 수행의 한계가 있음 <br>
 
