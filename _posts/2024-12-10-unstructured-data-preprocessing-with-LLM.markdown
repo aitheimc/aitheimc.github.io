@@ -205,10 +205,7 @@ tags:
 
 </div>
 
-<br>
-
 ```
-
 Input Text Parsing Rules:
 Extract and organize chemical information into structured JSON following the provided structure and rules. Handle multiple substances and mixtures according to these guidelines.
 
@@ -268,10 +265,7 @@ Example Output:
 ]
 
 Remember this rule and if user give you input, answer with output, without Explanation
-
 ```
-
-<br>
 
 <center> - 프롬프트 문 - </center>
 
@@ -287,10 +281,7 @@ Input :
 
 Output
 
-<br>
-
-```
-
+```python
 [
   {
     "Korean name": "무기시안 화합물",
@@ -301,10 +292,7 @@ Output
     "note": "베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외"
   }
 ]
-
 ```
-
-<br>
 
 ---
 
@@ -313,10 +301,7 @@ Input :
 
 Output
 
-<br>
-
-```
-
+```python
 [
   {
     "Korean name": "이염화1-[2-[에틸[4-[4-[4-[에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤조일아미노]페닐아조]-3-메틸페닐]아미노]에틸]피리디늄",
@@ -328,9 +313,6 @@ Output
   }
 ]
 ```
-
-<br>
-
 ---
 
 Input : 
@@ -338,7 +320,7 @@ Input :
 
 Output
 
-```
+```python
 [
   {
     "Korean name": "수산화 세트리모늄",
@@ -359,8 +341,6 @@ Output
 ]
 ```
 
-<br>
-
 ---
 
 
@@ -379,9 +359,7 @@ Input :
 
 Output
 
-<br>
-
-```
+```python
 [
   {
     "Korean name": "2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물",
@@ -393,8 +371,6 @@ Output
   }
 ]
 ```
-
-<br>
 
 ---
 
@@ -403,9 +379,7 @@ Input :
 
 Output
 
-<br>
-
-```
+```python
 [
   {
     "Korean name": "2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물",
@@ -416,10 +390,7 @@ Output
     "note": "부여안됨"
   }
 ]
-
 ```
-
-<br>
 
 ---
 
@@ -428,10 +399,7 @@ Input :
 
 Output
 
-<br>
-
-```
-
+```python
 [
   {
     "Korean name": "산화니켈 및 황화니켈류",
@@ -450,7 +418,6 @@ Output
     "note": ""
   }
 ]
-
 ```
 
 <br>
