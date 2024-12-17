@@ -62,7 +62,7 @@ $title-font-family: $nanum-gothic-font-family !default; /* title-font-family 를
 
 ⚠️ **Warning:** 블로그 글을 작성하다가, IP, 비밀번호 등 중요한 정보가 어느 브랜치든 실수로 업로드 되면 레포지토리를 폭파시키고 다시 만들어야 하니 반드시 공유해주세요. 리포지토리를 폭파시키고 다시 만들면 `collaborator` 초대 작업만 다시 하면 됩니다.
 
-### 블로그 작성 전 읽어야 하는 문저 목록
+### 블로그 작성 전 읽어야 하는 블로그 글 목록
 
 - [더아이엠씨 AI 블로그 post layer 작성법](https://aitheimc.github.io/guide-for-blog-write/)
 - [AI 블로그 작성을 위한 기본적인 깃허브 정보](https://aitheimc.github.io/basic-info-git-and-github/)
