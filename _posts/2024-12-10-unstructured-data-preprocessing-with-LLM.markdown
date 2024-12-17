@@ -275,7 +275,9 @@ Remember this rule and if user give you input, answer with output, without Expla
 #### ㅁ 비고 정보 포함 데이터
 
 - Input 
-> 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
+```
+무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
+```
 
 - Output
 
@@ -295,7 +297,10 @@ Remember this rule and if user give you input, answer with output, without Expla
 #### ㅁ 명칭 내 대괄호 포함 데이터
 
 - Input
-> 이염화1-[2-[에틸[4-[4-[4-[에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤조일아미노]페닐아조]-3-메틸페닐]아미노]에틸]피리디늄[ 1 - [ 2 - [ Ethyl[4-[4-[4-[ethyl(2-pyridinoethyl)amino]-2-m ethylphenylazo]benzoylamino]phenylazo]-3-methylphenyl]a mino]ethyl]pyridinium dichloride; 163831-67-2] 및 이를 25% 이상 함유한 혼합물
+```
+이염화1-[2-[에틸[4-[4-[4-[에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤조일아미노]페닐아조]-3-메틸페닐]아미노]에틸]피리디늄[ 1 - [ 2 - [ Ethyl[4-[4-[4-[ethyl(2-pyridinoethyl)amino]-2-m ethylphenylazo]benzoylamino]phenylazo]-3-methylphenyl]a mino]ethyl]pyridinium dichloride; 163831-67-2] 및 이를 25% 이상 함유한 혼합물
+```
+
 
 - Output
 
@@ -314,7 +319,9 @@ Remember this rule and if user give you input, answer with output, without Expla
 #### ㅁ 한 행에 다수의 물질 정보 포함 데이터 
 
 - Input
-> 수산화 세트리모늄[Cetrimonium hydroxide; 505-86-2]과 세트리모늄 염류[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물
+```
+수산화 세트리모늄[Cetrimonium hydroxide; 505-86-2]과 세트리모늄 염류[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물
+```
 
 - Output
 
@@ -349,7 +356,9 @@ Remember this rule and if user give you input, answer with output, without Expla
 
 - Input
 
-> 2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물[Mixture of 2-[[(3-ethenylphenyl)methoxy]methyl]oxirane(<113538-79-7) and 2-[[(4-ethenylphenyl)methoxy]methyl]oxirane(113538-80-0); 부여안됨
+```
+2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물[Mixture of 2-[[(3-ethenylphenyl)methoxy]methyl]oxirane(<113538-79-7) and 2-[[(4-ethenylphenyl)methoxy]methyl]oxirane(113538-80-0); 부여안됨
+```
 
 - Output
 
@@ -368,7 +377,9 @@ Remember this rule and if user give you input, answer with output, without Expla
 #### ㅁ 기타 형식
 
 - Input 
-> 산화니켈 및 황화니켈류[Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2]와 그 중 하나를 0.1% 이상 함유한 혼합물
+```
+산화니켈 및 황화니켈류[Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2]와 그 중 하나를 0.1% 이상 함유한 혼합물
+```
 
 - Output
 
@@ -399,7 +410,7 @@ Remember this rule and if user give you input, answer with output, without Expla
 ▷ 이러한 데이터를 전처리하기 위해서는 프롬프트에 규칙이나 예시를 더 추가하는 방법이 있으나 이럴 경우 프롬프트가 복잡해지고 직관성이 떨어짐 
 
 
-### 결론 및 제언
+### 5. 결론 및 제언
 
 
 - 공공기관의 데이터 정형화 사업은 시장성이 높은 사업이지만 기존 데이터들의 품질 문제에 단순 코드 방식으로는 사업 수행의 한계가 있음 <br>
