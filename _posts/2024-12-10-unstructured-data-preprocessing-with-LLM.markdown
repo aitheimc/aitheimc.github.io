@@ -345,8 +345,7 @@ Remember this rule and if user give you input, answer with output, without Expla
 
 ---
 
-#### 혼합물(CAS 포함) 데이터
-*제목 앞에 ㅁ 구분자가 없습니다*
+#### ㅁ 혼합물(CAS 포함) 데이터
 
 - Input
 
