@@ -274,7 +274,8 @@ Remember this rule and if user give you input, answer with output, without Expla
 
 #### ㅁ 비고 정보 포함 데이터
 
-- Input 
+- Input
+
 ```
 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
 ```
@@ -297,10 +298,10 @@ Remember this rule and if user give you input, answer with output, without Expla
 #### ㅁ 명칭 내 대괄호 포함 데이터
 
 - Input
+
 ```
 이염화1-[2-[에틸[4-[4-[4-[에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤조일아미노]페닐아조]-3-메틸페닐]아미노]에틸]피리디늄[ 1 - [ 2 - [ Ethyl[4-[4-[4-[ethyl(2-pyridinoethyl)amino]-2-m ethylphenylazo]benzoylamino]phenylazo]-3-methylphenyl]a mino]ethyl]pyridinium dichloride; 163831-67-2] 및 이를 25% 이상 함유한 혼합물
 ```
-
 
 - Output
 
@@ -319,6 +320,7 @@ Remember this rule and if user give you input, answer with output, without Expla
 #### ㅁ 한 행에 다수의 물질 정보 포함 데이터 
 
 - Input
+
 ```
 수산화 세트리모늄[Cetrimonium hydroxide; 505-86-2]과 세트리모늄 염류[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물
 ```
@@ -377,6 +379,7 @@ Remember this rule and if user give you input, answer with output, without Expla
 #### ㅁ 기타 형식
 
 - Input 
+
 ```
 산화니켈 및 황화니켈류[Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2]와 그 중 하나를 0.1% 이상 함유한 혼합물
 ```
