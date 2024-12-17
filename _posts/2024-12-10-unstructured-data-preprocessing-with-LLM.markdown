@@ -14,8 +14,6 @@ tags:
 
 <!--more-->
 
-~~---#<center>LLM을 활용한 비정형 데이터 전처리</center>####<center>[배경]</center>~~
-
 - 비정형 데이터의 전처리와 해당 데이터를 바탕으로한  DB 구축 사업을 진행하고 있음
 
 - 비정형 데이터 정형화에 대한 코딩 방식과 LLM 활용의 차이점을 비교
@@ -36,11 +34,11 @@ tags:
 
 </center>
 
-▷ ~~행정안전부의 “2024년 데이터기반행정 활성화 시행계획”에 따르면 범정부 데이터공유플랫폼을 목표로, 24년에만 약 5500억원의 예산 규모로 기관별 공유데이터관리시스템을 구축하고 26년까지 지속할 계획으로 다양한 기관에서 데이터관리시스템 구축 사업이 진행 중~~ *“2024년 데이터기반행정 활성화 시행계획”에 따르면 행정안전부는 2024년부터 2026년까지 범정부 데이터공유플랫폼을 구축하려는 계획을 가지고 있으며, 2024년에는 약 5500억 원을 예산으로 각 기관의 데이터관리시스템을 구축하고, 이를 통해 데이터 공유를 활성화하려고 함.*<br>
+▷ “2024년 데이터기반행정 활성화 시행계획”에 따르면 행정안전부는 2024년부터 2026년까지 범정부 데이터공유플랫폼을 구축하려는 계획을 가지고 있으며, 2024년에는 약 5500억 원을 예산으로 각 기관의 데이터관리시스템을 구축하고, 이를 통해 데이터 공유를 활성화하려고 함.<br>
 
-▷ ~~산업안전보험공단과 진행 중인~~ 본 ~~사업~~ *프로젝트* 도 화학물질 관련 정보 수집과 자체적인 DB 구축 후, 추가적인 법률이나 다양한 산업 분야에 대한 정보*를* 수집하여 데이터관리시스템을 확장하려고 함 <br>
+▷ 본 프로젝트도 화학물질 관련 정보 수집과 자체적인 DB 구축 후, 추가적인 법률이나 다양한 산업 분야에 대한 정보를 수집하여 데이터관리시스템을 확장하려고 함 <br>
 
-▷ ~~타 회사에서 제안하는~~ *기 구축된* 파일 데이터 정제 솔루션은 이미 구조화된 문서에서 데이터 추출(예 : 이름 칸에서 이름 정보 추출)하는 경우나 인력을 바탕으로 자료 정리가 대부분인 상황
+▷ 기 구축된 파일 데이터 정제 솔루션은 이미 구조화된 문서에서 데이터 추출(예 : 이름 칸에서 이름 정보 추출)하는 경우나 인력을 바탕으로 자료 정리가 대부분인 상황
 
 ---
 
@@ -99,17 +97,10 @@ tags:
 
 <br>
 
-▷ 기존의 자료는 *화학 물질에 대한 설명을 서술해둔 형태임* ~~하나의 셀 안에 여러 개의 정보를 포함~~
+▷ 기존의 자료는 화학 물질에 대한 설명을 서술해둔 형태임
 
-▷ 서술형 저장 방식을 ~~이를~~ 정규화하기 위해 “[” 를 기준으로 앞에는 한글명, “;” 앞에는 영문명 등 규칙에 따라~~기준으로~~ 코드를 작성해서 전처리함
+▷ 서술형 저장 방식을 정규화하기 위해 “[” 를 기준으로 앞에는 한글명, “;” 앞에는 영문명 등 규칙에 따라 코드를 작성해서 전처리함
 
-▷ 서술형에 규칙을 적용하는 방식은 ~~하지만~~ 화학물질 자체에 '[' 문자가 포함된다거나 순서가 반대인 것과 같은 예외들*이 다수 존재하여*~~로~~ 약 2000건의 데이터~~에서~~ *중* 200건 정도 오류가 발생함
-
-▷ 환경부에서~~만~~ 관리 중인 *화학물질 데이터 약* ~~전체~~ 5만개 ~~이상의 화학물질 데이터를~~ *에 룰 기반* ~~대상으로~~ 코드를 작성하면 코드가 엄청나게 복잡해지거나 사람이 데이터를 하나씩 수정해야 ~~함~~ *하는 한계가 존재 함*
-
----
-
-### 3. LLM
 
 <div style="text-align: center">
 
@@ -141,7 +132,7 @@ tags:
    <td>에피클로로히드린[<span style='background-color:#F7DD'>Epichlorohydrin; 1-Chloro-2,3-epoxypropane; 2-(Chloromethyl)oxirane; 106-89-8, 51594-55-9, 67843-74-7</span>] 및 이를 0.1% 이상 함유한 혼합물</td>
  </tr>
  <tr>
-   <td>한 행의 다수에 물질 정보 포함</td>
+   <td>한 행에 다수의 물질 정보 포함</td>
    <td><span style='background-color:#F7DD'>수산화 세트리모늄</span>[Cetrimonium hydroxide; 505-86-2]과 <span style='background-color:#F7DD'>세트리모늄 염류</span>[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물</td>
  </tr>
  <tr>
@@ -166,11 +157,17 @@ tags:
 
 </div>
 
-<br>
+▷ 서술형에 규칙을 적용하는 방식은 화학물질 자체에 '[' 문자가 포함된다거나 순서가 반대인 것과 같은 예외들이 다수 존재하여 약 2000건의 데이터 중 200건 정도 오류가 발생함
 
-▷ 기존 *룰 기반* 코딩 방식의 한계를 ~~회피하기~~ *벗어나기* 위해서 Chat-GPT 웹 서비스에 ~~를~~ *에 -표 4와 같은 구조의 프롬프팅 기술을* 활용~~해~~*하여* 데이터 전처리를 *진행함으로써 그 가능성을 확안함*
+▷ 환경부에서 관리 중인 화학물질 데이터 약 5만개에 룰 기반 드를 작성하면 코드가 엄청나게 복잡해지거나 사람이 데이터를 하나씩 수정해야 하는 한계가 존재 함
 
-▷ 데이터 전처리는 Chat-GPT에게 규칙을 작성한 뒤, 코딩 방식에서 전처리 하지 못한 데이터들 중 대표적인 오류들을 Input 으로 Output 값을 확인하는 방식으로 진행함 *-> 문장이 잘 이해가 안되서 직접 수정해 주세요*
+---
+
+### 3. LLM
+
+▷ 기존 룰 기반 코딩 방식의 한계를 벗어나기 위해서 Chat-GPT 웹 서비스에 -표 4와 같은 구조의 프롬프팅 기술을 활용하여 데이터 전처리를 진행함으로써 그 가능성을 확안함
+
+▷ 전처리 내용이 정리된 프롬프트 문을 Chat-GPT에 학습시킨 후, -표 3의 예시들을 제공하여 전처리된 결과값을 확인함
 
 <div style="text-align: center">
 
@@ -272,11 +269,10 @@ Remember this rule and if user give you input, answer with output, without Expla
 ▷ 프롬프팅 기술은 Output Formatting, Dircetional Stimulus, One-Shot 등 간단한 기술을 사용함
 <br>
 
-### *4. 적용*
-*▷ 앞에서 제안한 프롬프트를 GPT 웹서비스에 질문 후 Input 질문을 물어 보는 과정을 통해 아래 내용을 확인함*
+### 4. 적용
+▷ 앞에서 제안한 프롬프트를 GPT 웹서비스에 질문 후 Input 질문을 물어 보는 과정을 통해 아래 내용을 확인함
 
-#### *일반 적용 예시(적적한 소제목으로 제작성해주세요)* 
-*아래 내용부터 형식을 수정하였습니다. 확인해보시고 형식 재고 부탁해요* 
+#### ㅁ 비고 정보 포함 데이터
 
 - Input 
 > 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
@@ -296,7 +292,7 @@ Remember this rule and if user give you input, answer with output, without Expla
 ]
 ```
 
-#### *일반 적용 예시(적적한 소제목으로 제작성해주세요)* 
+#### ㅁ 명칭 내 대괄호 포함 데이터
 
 - Input
 > 이염화1-[2-[에틸[4-[4-[4-[에틸(2-피리디노에틸)아미노]-2-메틸페닐 아조]벤조일아미노]페닐아조]-3-메틸페닐]아미노]에틸]피리디늄[ 1 - [ 2 - [ Ethyl[4-[4-[4-[ethyl(2-pyridinoethyl)amino]-2-m ethylphenylazo]benzoylamino]phenylazo]-3-methylphenyl]a mino]ethyl]pyridinium dichloride; 163831-67-2] 및 이를 25% 이상 함유한 혼합물
@@ -315,7 +311,7 @@ Remember this rule and if user give you input, answer with output, without Expla
   }
 ]
 ```
-#### *일반 적용 예시(적적한 소제목으로 제작성해주세요)* 
+#### ㅁ 한 행에 다수의 물질 정보 포함 데이터 
 
 - Input
 > 수산화 세트리모늄[Cetrimonium hydroxide; 505-86-2]과 세트리모늄 염류[Cetrimonium, salts; 112-02-7, 57-09-0, 124-23-2 등] 및 이를 2.5% 이상 함유한 혼합물
@@ -343,19 +339,17 @@ Remember this rule and if user give you input, answer with output, without Expla
 ]
 ```
 
----
-
-
-~~<center> - 전처리 성공 예시 - </center>~~
-#### *일반 적용 예시(적적한 소제목으로 제작성해주세요)* 
-
 ▷ 기존의 코드로 전처리 하기 어려웠었던 예외들 GPT를 통해 전처리했을 때, 대다수의 경우가 비교적 간단한 프롬프트 문으로도 원하는 결과를 반환하는 것을 확인할 수 있었음 
 
 ▷ 특히 '한 행의 다수에 물질 정보 포함된 경우'처럼 복잡한 구조의 데이터도 분리하여 전처리하는 것을 확인 가능함
 
+---
+
+#### 혼합물(CAS 포함) 데이터
+
 - Input
 
-> 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
+> 2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물[Mixture of 2-[[(3-ethenylphenyl)methoxy]methyl]oxirane(<113538-79-7) and 2-[[(4-ethenylphenyl)methoxy]methyl]oxirane(113538-80-0); 부여안됨
 
 - Output
 
@@ -371,27 +365,7 @@ Remember this rule and if user give you input, answer with output, without Expla
   }
 ]
 ```
-
-#### *일반 적용 예시(적적한 소제목으로 제작성해주세요)* 
-
-- Input
-> 무기시안 화합물[Inorganic cyanide compounds] 및 이를 1% 이상 함유한 혼합물. 다만, 베를린청(Ferric ferrocyanide), 페로시안염(Ferrocyanide, salts), 페리시안염(Ferricyanide, salts) 및 그 중 하나를 함유한 혼합물은 제외
-
-- Output
-
-```python
-[
-  {
-    "Korean name": "2-[[(3-에테닐페닐)메톡시]메틸]옥시란과 2-[[(4-에테닐페닐)메톡시]메틸]옥시란의 혼합물",
-    "English name": "Mixture of 2-[[(3-ethenylphenyl)methoxy]methyl]oxirane and 2-[[(4-ethenylphenyl)methoxy]methyl]oxirane",
-    "Alternative English names": [],
-    "CAS number": ["113538-79-7", "113538-80-0"],
-    "mixture standard": "1%",
-    "note": "부여안됨"
-  }
-]
-```
-#### *일반 적용 예시(적적한 소제목으로 제작성해주세요)* 
+#### ㅁ 기타 형식
 
 - Input 
 > 산화니켈 및 황화니켈류[Nickel oxide; 1313-99-1, 11099-02-8, 12035-36-8, 1314-06-3 / Nickel sulfide; 16812-54-7, 11113-75-0, 12035-72-2]와 그 중 하나를 0.1% 이상 함유한 혼합물
@@ -419,9 +393,6 @@ Remember this rule and if user give you input, answer with output, without Expla
 ]
 ```
 
-~~<center> - 전처리 실패 예시 - </center>~~
-#### *일반 적용 예시(적적한 소제목으로 제작성해주세요)* 
-
 ▷ 하지만 기존의 화학물질과는 더 큰 예외 특  성을 가지고 있는 데이터는 전처리가 불완전한 것을 확인함<br>
  (* 혼합물(CAS 포함), 기타)
 
@@ -430,8 +401,6 @@ Remember this rule and if user give you input, answer with output, without Expla
 
 ### 결론 및 제언
 
-
-~~###  <center>[결론]</center>~~
 
 - 공공기관의 데이터 정형화 사업은 시장성이 높은 사업이지만 기존 데이터들의 품질 문제에 단순 코드 방식으로는 사업 수행의 한계가 있음 <br>
 
