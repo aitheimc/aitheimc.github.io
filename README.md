@@ -13,22 +13,54 @@
 
 로컬에 ruby 및 jekyll을 설치하고 본 레퍼지토리를 `clone` 하여 `jekyll serve` 명령어를 실행하면 로컬에서 확인 후 깃허브에 `push` 할 수 있습니다. 
 
-- so-simple-theme 사용법은 아래 블로그를 통해 확인할 수 있습니다.
+- so-simple-theme 을 활용한 블로그 작성법은 아래 블로그를 통해 확인할 수 있습니다.
 > https://olvimama.github.io/blog/gitpages-about-so-simple-theme
 
-> https://github.com/mmistakes/so-simple-theme
-
 > https://github.com/olvimama/olvimama.github.io/tree/master
+
+- 지향하는 블로그 디자인을 참고 하고 싶다면 아래 사이트를 참고하세요!
+> https://aws.amazon.com/ko/blogs/tech/
 
 ### 문서 참고 없이 커스텀한 내용
 
 #### 폰트
+
+##### 폰트 모양
 
 `_sass /so-simple /_variables.scss`  파일 내용을 아래 와같이 수정 하였으며, [구글 폰트](https://fonts.google.com/specimen/Nanum+Gothic?lang=ko_Kore)를 활용함.
 
 ```css
 $nanum-gothic-font-family: "Nanum Gothic", sans-serif !default; /* 폰트 패밀리에 나눔고딕체 추가 */
 $title-font-family: $nanum-gothic-font-family !default; /* title-font-family 를 nanum-gothic-font-family로 변경*/
+```
+
+##### 제목 폰트 사이즈 및 스타일 
+
+목록에서 제목 크기조절 및 이탤릭체 제거를 위해 `_sass /so-simple /_entries.scss` 파일을 수정함.
+
+```css
+.entry-title {
+  margin-bottom: 0.5rem;
+  font-family: $title-font-family;
+  font-weight: $entry-title-weight;
+  /*font-style: italic; 제거*/
+  letter-spacing: -1px;
+  word-wrap: break-word; /* break long words that could overflow */
+
+...중략...
+```
+
+블로그 글 제목에서 크기조절 및 이탤릭체 제거를 위해 `_sass /so-simple /_page.scss` 파일을 수정함.
+
+```css
+.page-title {
+  @include fluid-type($min-vw, $max-vw, 30px, 40px); /* 픽셀 크기 30, 40로 변경*/
+  margin-bottom: 0.5em;
+  font-family: $title-font-family;
+  font-weight: $page-title-weight;
+  # font-style: italic;
+  letter-spacing: -2px;
+}
 ```
 
 #### author
