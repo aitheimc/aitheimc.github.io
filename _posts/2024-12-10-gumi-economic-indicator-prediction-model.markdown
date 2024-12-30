@@ -87,7 +87,7 @@ tags:
 |학습용 데이터|구미시를 제외한 142개 지역|X:(1846, 10, 14)<br>y:(1846,1,14)|
 |테스트 데이터|구미시 데이터|X:(13,10,14)<br>y:(13,1,14)|
 
-<img src="../images/bjy/first_prediction.png" width="800" height="400" alt="남성 경제활동 모델 결과">
+<img src="../images/bjy/first_prediction.png" width="700" height="200" alt="남성 경제활동 모델 결과">
 
 <center>그림3 - 남성 경제활동 모델 결과</center>
 
