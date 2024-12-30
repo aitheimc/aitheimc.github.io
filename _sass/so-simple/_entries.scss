@@ -25,6 +25,8 @@
   margin-bottom: 0.5rem;
   font-family: $title-font-family;
   font-weight: $entry-title-weight;
+  /* 폰트 사이즈 강제 추가 */
+  font-size: 18px !important;
   /*font-style: italic;*/
   letter-spacing: -1px;
   word-wrap: break-word; /* break long words that could overflow */
