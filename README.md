@@ -37,7 +37,21 @@ $max-font-size: 16px !default;
 
 ```css
 $nanum-gothic-font-family: "Nanum Gothic", sans-serif !default; /* 폰트 패밀리에 나눔고딕체 추가 */
-$title-font-family: $nanum-gothic-font-family !default; /* title-font-family 를 nanum-gothic-font-family로 변경*/
+$IBM-Plex-sans-KR-font-family: "IBM Plex Sans KR", sans-serif !default; /* 폰트 패밀리에 IBM Plex 추가 */
+$serif-font-family: "Lora", serif !default;
+$sans-serif-font-family: "Source Sans Pro", sans-serif !default;
+$monospace-font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospace !default;
+
+$base-font-family: $IBM-Plex-sans-KR-font-family !default; /* base-font-family: 를 $IBM-Plex-sans-KR-font-family로 변경*/
+$headline-font-family: $IBM-Plex-sans-KR-font-family !default; /* headline-font-family 를 $IBM-Plex-sans-KR-font-family로 변경*/
+$title-font-family: $IBM-Plex-sans-KR-font-family !default; /* title-font-family 를 $IBM-Plex-sans-KR-font-family로 변경*/
+$description-font-family: $IBM-Plex-sans-KR-font-family !default; /*description-font-family 를 $IBM-Plex-sans-KR-font-family로 변경*/
+$meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family 를 $IBM-Plex-sans-KR-font-family로 변경*/
+//$base-font-family: $sans-serif-font-family !default; 
+//$headline-font-family: $sans-serif-font-family !default; 
+//$title-font-family: $serif-font-family !default;
+//$description-font-family: $serif-font-family !default;
+//$meta-font-family: $serif-font-family !default;
 ```
 
 #### 글 목록의 제목 폰트 수정
