@@ -107,9 +107,39 @@ $meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family �
  {% if site.data.text[site.locale].by %}<em>{{ site.data.text[site.locale].by }}</em> {% endif %}<span class="p-name"><b>{{ author.name }}</b></span>
 ```
 
-### GA(google analysis) / 네이버 코드 삽입
+### 검색 최적화 : GA(google analysis) / 네이버 코드 삽입
 
-`_layouts / page.html` 내 header 사이에 구글 script 문구를 삽입하고, _config.yml 파일에 UA 입력
+`_layouts / page.html` 내 header 사이에 구글 script 문구를 삽입하였으며, 변경 내용은 아래와 같습니다.
+```html
+<!-- DMC 팀 요청으로 meta 테그 추가-->
+<!--{% if page.id %}
+  {% assign title = page.title | markdownify | strip_html %}
+{% else %}
+  {% assign title = page.title %}
+{% endif %}-->
+<!-- DMC 팀 요청으로 title 및 description 테그 추가-->
+<title>더아이엠씨 테크 블로그</title>
+<meta name="description" content="누구나 접근하기 쉬운 AI를 만들기 위한 더아이엠씨 팀 이야기">
+<!-- END DMC 팀 요청으로 title 및 description 테그 추가-->
+
+...중략...
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KH3JR7SV');</script>
+<!-- End Google Tag Manager -->
+<!-- DMC 팀 요청으로 meta 테그 추가-->
+<meta name="naver-site-verification" content="00f64abc1586c4491dd51f8628fe9ab18fca0c40" />
+<meta property="og:type" content="website"> 
+<meta property="og:title" content="The IMC 테크 블로그">
+<meta property="og:description" content="누구나 접근하기 쉬운 AI를 만들기 위한 The IMC의 AI 모델링팀 이야기">
+<!-- END DMC 팀 요청으로 meta 테그 추가-->
+```
+
+_config.yml 파일에 UA 입력
 
 구글 seo scipt는 header와 body 맨끝에 추가해둠.
 
