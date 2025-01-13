@@ -107,7 +107,7 @@ $meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family �
  {% if site.data.text[site.locale].by %}<em>{{ site.data.text[site.locale].by }}</em> {% endif %}<span class="p-name"><b>{{ author.name }}</b></span>
 ```
 
-### GA(google analysis) 코드 삽입
+### GA(google analysis) / 네이버 코드 삽입
 
 `_layouts / page.html` 내 header 사이에 구글 script 문구를 삽입하고, _config.yml 파일에 UA 입력
 
