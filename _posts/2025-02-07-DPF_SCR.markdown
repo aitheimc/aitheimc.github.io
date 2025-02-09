@@ -26,13 +26,7 @@ tags:
 
 반응식은 아래와 같음
 
-```math
-2NH_2CONH_2 + 2NO → 3N_2 + 4H_2O + 2CO_2
-```
-
-```math
-2NH_2CONH_2 + 4NO_2 → 4N_2 + 4H_2O + 2CO_2 + O_2
-```
+![scr](C:\Users\10-210917\Desktop\git test\aitheimc.github.io\images\Kimyh\scr.PNG)
 
 <장점>
 
