@@ -26,13 +26,13 @@ tags:
 
 반응식은 아래와 같음
 
-![scr](C:\Users\10-210917\Desktop\git test\aitheimc.github.io\images\Kimyh\scr.PNG)
+![scr](..\images\Kimyh\scr.PNG)
 
-<장점>
+- 장점
 
 엔진 자체에 완전 연소를 유도함으로써 자체적 연비 증가 및 오염물질 중화에 추가 연료소비를 하지 않아 EGR 시스템에 비해 연비가 좋으며 화학적 반응을 활용함으로 인해 환경 개선 효과가 큼
 
-<단점>
+- 단점
 
 요소수를 필수적으로 보충해줘야하며 이로 인한 추가 비용이 발생함.
 
