@@ -2,7 +2,7 @@
 layout: post
 title:  Vision AI 기술 적용을 위한 ultralytics YOLOv11 활용법
 date:   2025-02-17
-author: bjy
+author: Bjy
 excerpt_separator: "<!--more-->"
 tags:
     - YOLOv11
