@@ -11,7 +11,7 @@
 # - title: Recipes
 #   url: /recipes/z
 - title: AI TOM
-  url: https://aitom.co.kr/
+  url: https://huggingface.co/spaces/randmimc/aitom
 - title: Search
   url: /search/
 
