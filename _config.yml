@@ -105,5 +105,5 @@ author:
 #Footer Links
 footer_links:
   - title: chat
-    url: https://aitom.co.kr/
+    url: https://huggingface.co/spaces/randmimc/aitom
     icon: fas fa-braille
