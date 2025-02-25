@@ -14,10 +14,10 @@ tags:
 
 <!--more-->
 
-# 코드 구성
+## 코드 구성
 스트림릿에서 제공하는 기본 챗봇 디자인을 커스텀하기 위해 작성한 아래 코드는 `패키지`, `글로벌`, css 스타일과 html 틀을 스트림릿에 적용시키기 위한 `Front` 그리고 과거 챗봇 내용을 기억하고 인증과정과 챗봇 내용을 생성하는 `Back` 크게 4가지로 구성됩니다. 
 
-# 패키지
+## 패키지
 챗봇 구동을 위한 패키지는 아래 코드와 갔습니다.
 
 ```python
@@ -27,7 +27,7 @@ import streamlit as st
 from transformers import pipeline
 ```
 
-# 글로벌 변수
+## 글로벌 변수
 챗봇을 구동하기 위해 필요한 언어 모델, 챗봇에 프로필 이미지 경로, 챗봇 정보 저장과 인증 정보를 기억하기 위한 있는 세션 객체를 선언하는 영역으로 코드는 아래와 같습니다.
 
 ```python
@@ -50,10 +50,10 @@ if "messages" not in st.session_state:
 사용자의 인터랙션을 관리하는 기능을 말합니다. Streamlit은 기본적으로 사용자가 앱과 상호작용할 때마다 전체 코드가 다시 실행되는 구조인데, 세션 상태(Session State)를 활용하면 데이터를 유지하면서도 효율적인 앱을 만들 수 있습니다.
 ```
 
-# Front
+## Front
 스트림릿 챗봇 커스텀을 위해 html과 css 코드를 작성한 부분입니다.
 
-## CSS
+### CSS
 챗봇 디자인을 커스텀하는 코드 영역입니다. 사용자의 질문 표시 위치, 폰트, 사이즈 등과 챗봇의 프로필, 응답 표시 위치, 폰트, 사이즈, 응답 말풍선등이 주로 수정되었습니다. 스트림릿 객체 st.markdown는 텍스트를 마크다운 형식으로 랜더링 하는 함수이지만, unsafe_allow_html=True 옵션을 사용하면 HTML/CSS를 직접 적용할 수 있습니다. css 코드는 아래와 같으며, 요소 별 기능은 주석으로 설명해 두었습니다.
 
 ```css
@@ -98,7 +98,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 ```
 
-## 메세지 wrapper
+### 메세지 wrapper
 html 테그를 이용하여 채팅 매세지마다 css 스타일을 적용하기 위해 작성된 함수입니다.
 
 ```html
@@ -113,8 +113,8 @@ def assistant_message_style(assistant_icon_path, answer):
         <div class="chat-bubble assistant-bubble">{answer}</div>
     </div>"""
 ```
-# BACK
-## 과거 채팅 내용 출력
+## BACK
+### 과거 채팅 내용 출력
 스트림릿의 st.chat_input() 메서드는 사용자가 입력을 주면 세션 내용은 기억하면서 코드를 다시 실행하는 특성이 있습니다. 따라서 세션에 저장된 과거 대화 내용을 화면에 출력하기 위해서 새로 실행된 코드에 과거 내용을 미리 뿌려둘 수 있게 아래와 같은 코드를 작성해 두어야 합니다. 
 
 ```python
@@ -125,7 +125,7 @@ for message in st.session_state.messages:
         st.markdown(assistant_message_style(assistant_icon_path, message["content"]), unsafe_allow_html=True)
 ```
 
-## 인증 메세지
+### 인증 메세지
 본 코드는 다른 챗봇 코드와 달리 인증을 위해 챗봇이 먼저 사용자에게 말을 거는 구조 입니다. 세션내 과거 기록이 없다면 첫 대화로 인지하고 인증을 위한 메세지를 먼저 말하게 구성하기 위해 아래와 같은 코드를 작성합니다.
 
 ```python
@@ -134,7 +134,7 @@ if not st.session_state.messages:
     st.session_state.messages.append({"role": "assistant", "content": greeting})
     st.markdown(assistant_message_style(assistant_icon_path, greeting), unsafe_allow_html=True)
 ``` 
-## 인증 및 응답 생성
+### 인증 및 응답 생성
 아래 코드에서 사용된 `prompt :=`는 "월러스 연산자" (:=, walrus operator)로, 입력값이 있으면 이를 prompt 변수에 할당하면서 동시에 조건문을 실행하는 기능을 합니다. 아래 코드와 같이 윌러스 연산자를 이용하여 챗봇이 구성되었습니다. 각 코드 별 설명은 아래 코드 내 주석을 참고하세요.
 
 ```python
@@ -166,12 +166,12 @@ if prompt := st.chat_input():
 
 ```
 
-# 커스텀 디자인 화면
+## 커스텀 디자인 화면
 위코드를 적용하여 커스텀한 디자인은 아래와 같습니다.
 ![fastapi_title](/images/jin/streamlit_custom.png)
 [참고] 코드 내 내용은 단순예시 입니다.
 
-# [참고] 전체코드
+## [참고] 전체코드
 자사 레퍼런스용 챗봇 개발 당시 위 내용을 기반하여 초기 테스트로 사용한 전체 코드는 아래와 같습니다. 
 
 ```python

@@ -13,15 +13,15 @@ tags:
 딥러닝을 활용한 객체 감지, 세그멘테이션, 분류, 포즈(키포인트) 추출, 오리엔티드 바운딩 박스(방향을 고려한 감지) 등의 연구가 활발히 이루어지고 있습니다. 그 중 YOLOv8과 11은 YOLO(You Only Look Once) 모델을 개발 및 유지보수하는 AI 연구 기업인 Ultralytics가 2023, 2024년에 개발 및 배포한 모델입니다. Ultralytics는 2020년에 PyTorch 기반 YOLOv5를 배포했으며, YOLOv8은 그 후속 버전으로서 높은 사용성을 인정받아 다양한 분야에서 활용되고 있고, 2024년 발표한 YOLOv11은 더욱 개선된 정확도와 효율성을 보여줍니다. 본 포스팅에서는 YOLOv11을 신속하게 사용할 수 있는 방법을 설명합니다.
 <!--more-->
 
-# 환경 구축
+## 환경 구축
 YOLOv11 작업을 위한 아나콘다 가상 환경 등을 만든 후 터미널에서 아래 명령어를 통해 ultralytics 패키지를 설치합니다.
 
 ```bash
 pip install ultralytics
 ```
 
-# 데이터 준비
-## 디렉션 구성
+## 데이터 준비
+### 디렉션 구성
 `datasets` 디렉션을 생성한 후, 하위 디렉션으로 images, labels을 각각 생성합니다.
 ```bash
 $tree
@@ -36,7 +36,7 @@ datasets
 
 [주의] 학습데이터의 이미지명과 라벨명은 반드시 동일해야 합니다. (확장자 제외)
 
-## train/val 분할
+### train/val 분할
 train/val 데이터 분할 방법은 `txt파일 분할`, `폴더 분할`  2가 있으나, 주로 txt 파일 분할 방식을 사용합니다. 
 ```bash
 $tree
@@ -76,7 +76,7 @@ $ cat dataset/val.txt
 /home/{user}/{project_name}/datasets/images/example_06.jpg
 ```
 
-## 학습 데이터 환경설정(data.yaml)
+### 학습 데이터 환경설정(data.yaml)
 데이터셋 정보는 `data.yaml` 파일을 생성하고, 데이터셋의 경로, 클래스 수, 클래스 이름 등으로 정의하며, 아래 예시를 참고하여 데이터 경로와 class 정보를 입력합니다. 감지, 세그멘테이션, 포즈(키포인트) 추출의 예시는 아래와 같습니다.
 
 - 감지, 세그멘테이션
@@ -105,7 +105,7 @@ names:
     0:st_leaf
 ```
 
-## 사용법
+### 사용법
 Ultralytics의 YOLO를 사용하기 위해서 CLI(Command-Line Interface), 파이썬 혹은 utralytics 웹사이트를 통해 활용할 수 있습니다. 본 문서에서는 CLI 활용법을 다루며, `yolo` 명령어 뒤에 `TASK`, `MODE`, `ARGS` 순으로 입력하여 사용합니다.
 ```bash
 yolo {TASK} {MODE} {ARGS}

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  더아이엠씨 AI 블로그 작성법 및 작성 규정정
+title:  더아이엠씨 AI 블로그 작성법 및 작성 규정
 date:   2024-10-18
 author: Jin
 excerpt_separator: "<!--more-->"
