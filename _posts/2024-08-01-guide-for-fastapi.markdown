@@ -26,13 +26,13 @@ fastapi를 통해 완성된 API는 주로 파이썬으로 테스트 되기도 �
 - 폼
 
 ```bash
-curl -X POST http://0.0.0.0.:8080/item_post =H 'Content-Type: application/x-www-form-urlencoded' -d "name=string&description=example&price=0"
+curl -X POST http://0.0.0.0.:8080/item_post -H 'Content-Type: application/x-www-form-urlencoded' -d "name=string&description=example&price=0"
 ```
 
 - json
 
 ```bash
-curl -X POST http://0.0.0.0.:8080/item_post =H 'Content-Type: application/json' -d '{"name":"string", "description":"example", "price":0}'
+curl -X POST http://0.0.0.0.:8080/item_post -H 'Content-Type: application/json' -d '{"name":"string", "description":"example", "price":0}'
 ```
 
 폼 형식은 제안된 지 오래되고 익숙하게 사용되는 포멧이며, curl 기능을 수행하는 파이썬 request 패키지에서 폼 형식을 파이썬 dict 타입으로 받는 특징을 가집니다. 이에 따라, 별다른 요청이 없다면 폼 형식을 받을 수 있게 fastapi의 Form 메서드를 활용하여 코드를 작성합니다. Form 메서드를 활용항 코드 예시는 아래와 같습니다.
@@ -60,9 +60,9 @@ async def items_post(
 
 ## 미들웨어
 ### 1. 로깅
-utils 디렉션 [부록](#부록)과 같이 logutils.py 파일을 작성한 후 로거를 불러와 사용합니다.
+utils 디렉션에 [로깅 모듈](https://aitheimc.github.io/logutils_temp/)과 같이 logutils.py 파일을 작성한 후 로거를 불러와 사용합니다.
 
-### 2. CORS처리 (Cross-Origin Resource Sharing)
+### 2. CORS처리 (Cross-Origin Resource Sharing, 고객사 요청 및 필요에 따라 작성)
 접근 가능한 도메인, 프로토콜 메서드, 헤더를 정의하고 쿠키 및 인증 접근 허용하는 것을 설정하는 기능을 말합니다. 다른 요청이 없다면, 주로, 모든 도메인 허용, GET, POST 메서드 허용, 모든 헤더 허용, 자격증명 허용으로 설정하지만, 고객사와 커뮤니케이션 할때는 반드시 위 내용을 확인해 주세요. fastapi에서 CORS 처리하는 코드 예시는 아래와 같습니다.
 
 ```python
@@ -79,7 +79,43 @@ app.add_middleware(
 ```
 
 ### 3. 인증
-인증은 여러 방식이 있지만, fastAPI를 활용한 IP 허용만 설명합니다. 다른 방식으로 요청이 오면 개발팀과 논의하고 가능한 수준에서 작성합니다. ip 허용을 위한 미들웨어는 BaseHTTPMiddleware를 상속받아 아래와 같이 객체를 만들어 사용할 수 있습니다.
+인증은 여러 방식이 있지만, fastAPI를 활용한 시크릿키 적용 혹은 IP 허용만 설명합니다. 다른 방식으로 요청이 오면 개발팀과 논의하고 가능한 수준에서 작성합니다. 
+#### 시크릿키 적용
+헤더에 secret-key를 만들어 전달하는 방식은 아래 코드와 같습니다. 
+
+```python
+from fastapi import FastAPI, Form, Header, HTTPException
+
+app = FastAPI() # 아래 '4.1 객체선언기능'을 통해 상세 정보 확인 가능
+
+@app.post("/items_post")
+async def items_post(
+    name: str = Form(...), 
+    description: str = Form(...), 
+    price: float = Form(...).
+    secret_key: str = Header(None, description="secret key")
+    ):
+
+    if secret_key !="{인증 키}":
+        raise HTTPException(status_code=403, detail="Invalid secret-key")
+
+    return {
+        "name": name,
+        "description": description,
+        "price": price
+        }
+```
+
+위 API를 요청할떄 header 에 시크릿 키를 추가 합니다.
+```bash
+curl -X POST http://0.0.0.0:8080/item_post \
+     -H "Content-Type: application/json" \
+     -H "secret-key: your_secret_key" \
+     -d '{"name":"string", "description":"example", "price":0}'
+```
+
+#### IP 허용
+ip 허용을 위한 미들웨어는 BaseHTTPMiddleware를 상속받아 아래와 같이 객체를 만들어 사용할 수 있습니다.
 ```python
 from starlette.middleware.base import BaseHTTPMiddleware
 
@@ -159,4 +195,3 @@ async def items_post(
 
 위 코드를 적용하였을 때 나타나는 웹페이지 일부는 아래 그림과 같습니다.
 ![fastapi_def_explain](/images/jin/fastapi_def_explain.png)
-

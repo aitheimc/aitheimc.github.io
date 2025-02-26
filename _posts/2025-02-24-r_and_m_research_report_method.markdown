@@ -21,8 +21,12 @@ tags:
 
 ## 내용
 자세한 설명이 필요한 부분은 아래 표 링크를 통해 확인할 수 있습니다.
+
 |단계|환경구성 방법|컨텐츠 업로드 방식|
 |---|---|---|
-|기술블로그|[깃허브 블로그](https://github.com/aitheimc/aitheimc.github.io/blob/main/README.md)|[마크다운 ruled  by So Simple](https://aitheimc.github.io/guide-for-blog-write/)|
-|API 서비스|파이썬|[fastapi 활용](https://aitheimc.github.io/guide-for-fastapi/)|
-|챗봇 서비스|[허깅페이스 스페이스](https://huggingface.co/docs/hub/spaces-overview)<br>[스트림릿커스텀](https://aitheimc.github.io/streamlit-custom-chatbotUI/)|API 서비스와 연동 등등|
+|[기술블로그](https://aitheimc.github.io/)|[깃허브 블로그 배포포](https://github.com/aitheimc/aitheimc.github.io/blob/main/README.md)|[마크다운 작성 ruled  by So Simple](https://aitheimc.github.io/guide-for-blog-write/)|
+|API 서비스|파이썬 프레임워크(fastapi)활용<br>리버스 프록시 적용 중|[fastapi 코드 기본 작성 규정](https://aitheimc.github.io/guide-for-fastapi/)|
+|[챗봇 서비스](https://huggingface.co/theimc)|[허깅페이스 스페이스 구성성](https://huggingface.co/docs/hub/spaces-overview)|[스트림릿 커스텀](https://aitheimc.github.io/streamlit-custom-chatbotUI/)|
+
+- [참고]
+> 리버스 프록시(Reverse Proxy) : 클라이언트가 직접 벡엔드에 접속 하지 않고 리버스 프록시가 중간에서 요청을 받아 대신 처리함으로써 벡엔드 서버를 최소한으로 보호하는 역할을 합니다. 본 API 서비스의 서버 IP를 숨겨 보안을 강화하기 위해 사용하였습니다.
