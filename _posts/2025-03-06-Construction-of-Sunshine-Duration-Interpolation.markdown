@@ -116,26 +116,22 @@ $$shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \ti
 - 하늘상태 보정계수를 적용하여 최종 일조시간 산출
 
 
-<div style="display: flex; justify-content: center; margin: 20px 0;">
-<div style="border: 1px solid #ccc; padding: 15px; max-width: 500px; text-align: center; background-color: #f8f8f8; color: #000;">
+<div style="border: 1px solid #ccc; padding: 15px; max-width: 500px; text-align: center; background-color: #f8f8f8; color: #000; margin: 20px auto;">
 <strong>< 하늘 상태 보정계수 적용한 일조시간 산출 예시 ></strong><br>
 - 산출된 일조시간 : 45분<br>
 - 하늘 상태 : 구름 조금<br>
 - 최종 일조시간 = 45분 x 0.683(하늘 보정계수) = 30.7분
 </div>
-</div>
 
 ### (5) 시간대별 처리 및 누적
 - 일출/일몰 시간이 정각이 아닐 경우, 비일조시간을 제외하여 보정
 
-<div style="display: flex; justify-content: center; margin: 20px 0;">
-<div style="border: 1px solid #ccc; padding: 15px; max-width: 500px; text-align: center; background-color: #f8f8f8; color: #000;">
+<div style="border: 1px solid #ccc; padding: 15px; max-width: 500px; text-align: center; background-color: #f8f8f8; color: #000; margin: 20px auto;">
 <strong>< 일출/일몰 시간대 처리 예시 ></strong><br>
 ✔ 일몰시각이 18:20 인 경우 <br>
 - 산출된 18시의 일조시간 : 45분 <br>
 - 하늘 상태 : 구름 조금<br>
 - 전체 60분 중 20분만 일조 가능하므로, 45분 X (20/60) = 15분
-</div>
 </div>
 
 
