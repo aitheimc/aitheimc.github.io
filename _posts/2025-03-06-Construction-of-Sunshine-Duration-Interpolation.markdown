@@ -122,7 +122,7 @@ shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \time
 </style>
 
 <div style="text-align: center">
-<img src="../images/jhg/0304_process.png" width="1000" height="300" alt="지도">
+<img src="../images/jhg/0304_map.png" width="1000" height="300" alt="지도">
 </div>
 
 <center> 그림3 - 상주시 음영기복도 </center>
