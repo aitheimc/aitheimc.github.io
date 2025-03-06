@@ -34,11 +34,7 @@ tags:
 
 ## 2. 구축 프로세스
 
-<style>
-  th {
-    text-align: center;
-  }
-</style>
+
 
 <div style="text-align: center">
 <img src="../images/jhg/0304_process.png" width="1000" height="300" alt="프로세스">
@@ -51,11 +47,6 @@ tags:
 - 하늘 상태에 따른 운량 보정계수를 DEM 해상도에 맞춰 공간 보간 처리
 - 시간대별 운량 보정이 적용된 DEM 데이터 구축
 
-<style>
-  th {
-    text-align: center;
-  }
-</style>
 
 <div style="text-align: center">
 <img src="../images/jhg/0304_process2.png" width="1000" height="300" alt="프로세스">
