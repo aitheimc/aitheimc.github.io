@@ -76,24 +76,24 @@ azimuth = get_azimuth(latitude, longitude, time)
 
 ### (3) 시간대별 일조시간 산출
 - DEM 데이터는 2차원 배열의 형태로 각 픽셀이 해당 위치의 고도값을 가지고 있으며, 해당 값을 활용하여 경사도(Slope) 및 향(Aspect) 계산 후 음영기복도 생성
-- 음영기복도는 0~255 범위의 값을 가지며, 255에 가까울 수록 휘도가 높음을 의미
+- 음영기복도는 `0~255` 범위의 값을 가지며, `255`에 가까울 수록 휘도가 높음을 의미
 - 태양의 방위각 및 고도를 고려하여 시간대별 음영기복도 생성
+
+<div style="border: 1px solid #ddd; padding: 15px; text-align: center; margin: 20px 0;">
 
 #### 경사도(Slope) 계산
 
-\[
-slope = \arctan(\sqrt{dx^2 + dy^2})
-\]
+$$slope = \arctan(\sqrt{dx^2 + dy^2})$$
 
 #### 향(Aspect) 계산
-\[
-aspect = \arctan2(-dx, dy)
-\]
+
+$$aspect = \arctan2(-dx, dy)$$
 
 #### 음영기복도 계산
-\[
-shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \times \cos(az\_rad - aspect)
-\]
+
+$$shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \times \cos(az\_rad - aspect)$$
+
+</div>
 
 | 변수 | 설명 |
 |------|------|
