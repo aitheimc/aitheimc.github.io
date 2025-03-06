@@ -34,10 +34,8 @@ tags:
 
 ## 2. 구축 프로세스
 
-
-
 <div style="text-align: center">
-<img src="../images/jhg/0304_process.png" width="1000" height="300" alt="프로세스">
+    <img src="../images/jhg/0304_process.png" style="max-width: 1000px; height: auto;" alt="프로세스">
 </div>
 
 <center> 그림1 - 일조시간 보간도 구축 프로세스 </center>
@@ -49,7 +47,7 @@ tags:
 
 
 <div style="text-align: center">
-<img src="../images/jhg/0304_process2.png" width="1000" height="300" alt="프로세스">
+    <img src="../images/jhg/0304_process2.png" style="max-width: 1000px; height: auto;" alt="프로세스">
 </div>
 
 <center> 그림2 - 시간대별 하늘상태 데이터 구축 프로세스 </center>
@@ -106,14 +104,9 @@ shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \time
 
 - 음영기복도 값을 독립변수(0~255), 일조시간을 종속변수(0~60분)로 설정하여 일조시간 도출
 
-<style>
-  th {
-    text-align: center;
-  }
-</style>
 
 <div style="text-align: center">
-<img src="../images/jhg/0304_map.png" width="1000" height="300" alt="지도">
+    <img src="../images/jhg/0304_map.png" style="max-width: 1000px; height: auto;" alt="지도">
 </div>
 
 <center> 그림3 - 상주시 음영기복도 </center>
@@ -153,19 +146,19 @@ shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \time
 ## 3. 결과 및 비교
 
 ### 맑은 날
-| 구축 보간도 | 조기경보 시스템 보간도 |
-|-------------|----------------------|
-| ![구축 보간도](../images/jhg/theimc_1.png)  | ![조기경보시스템 보간도](../images/jhg/ori_1.png)  |
 
-### 구름이 낀 날 1
 | 구축 보간도 | 조기경보 시스템 보간도 |
 |-------------|----------------------|
-| ![구축 보간도](../images/jhg/theimc_2.png)  | ![조기경보시스템 보간도](../images/jhg/ori_2.png)  |
+| <img src="../images/jhg/theimc_1.png" style="max-width: 500px; height: auto;">  | <img src="../images/jhg/ori_1.png" style="max-width: 500px; height: auto;">  |
+
+| 구축 보간도 | 조기경보 시스템 보간도 |
+|-------------|----------------------|
+| <img src="../images/jhg/theimc_2.png" style="max-width: 500px; height: auto;">  | <img src="../images/jhg/ori_2.png" style="max-width: 500px; height: auto;">  |
 
 ### 구름이 낀 날 2
 | 구축 보간도 | 조기경보 시스템 보간도 |
 |-------------|----------------------|
-| ![구축 보간도](../images/jhg/theimc_3.png)  | ![조기경보시스템 보간도](../images/jhg/ori_3.png)  |
+| <img src="../images/jhg/theimc_3.png" style="max-width: 500px; height: auto;">  | <img src="../images/jhg/ori_3.png" style="max-width: 500px; height: auto;">  |
 
 ## 4. 결론 및 제언
 - 본 연구에서 구축한 일조시간 보간도는 조기경보 시스템의 보간도와 유사한 분포를 보였으며, 실질적인 활용 가능성을 확인함
