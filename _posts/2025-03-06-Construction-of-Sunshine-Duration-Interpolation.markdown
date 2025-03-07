@@ -103,6 +103,7 @@ $$shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \ti
 | aspect | 향 (라디안) |
 <center> 표1 - 음영기복도 계산을 위한 변수 </center>
 
+<br>
 - 음영기복도 값을 독립변수(`0~255`), 일조시간을 종속변수(`0~60분`)로 설정하여 일조시간 도출
 
 
