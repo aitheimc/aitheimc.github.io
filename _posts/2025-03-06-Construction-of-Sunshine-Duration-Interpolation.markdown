@@ -47,7 +47,7 @@ tags:
 
 
 <div style="text-align: center">
-    <img src="../images/jhg/0304_process2.png" style="max-width: 1000px; height: auto;" alt="프로세스">
+    <img src="../images/jhg/0304_process2.png" style="max-width: 1500px; height: auto;" alt="프로세스">
 </div>
 
 <center> 그림2 - 시간대별 하늘상태 데이터 구축 프로세스 </center>
