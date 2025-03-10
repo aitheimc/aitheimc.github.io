@@ -31,6 +31,7 @@ tags:
 | 상주시 행정구역 경계 | Shapefile 형식 |
 | 상주시 30m 단위 격자 데이터 | 지형 데이터 |
 | 기상청 단기예보 데이터 | 5km 단위 격자 예보 (하늘상태 예보: 1=맑음, 3=구름조금, 4=흐림) |
+<center> 표1 - 활용 데이터 </center>
 
 ## 2. 구축 프로세스
 
@@ -101,7 +102,7 @@ $$shaded = \cos(zenith) \times \cos(slope) + \sin(zenith) \times \sin(slope) \ti
 | az_rad | 태양 방위각 (라디안) |
 | slope | 경사도 (라디안) |
 | aspect | 향 (라디안) |
-<center> 표1 - 음영기복도 계산을 위한 변수 </center>
+<center> 표2 - 음영기복도 계산을 위한 변수 </center>
 
 <br>
 - 음영기복도 값을 독립변수(`0~255`), 일조시간을 종속변수(`0~60분`)로 설정하여 일조시간 도출
