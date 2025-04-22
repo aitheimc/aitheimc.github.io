@@ -2,7 +2,7 @@
 layout: post
 title: 도로 라벨링 구축
 date: 2025-04-16
-author: whale
+author: Whale
 excerpt_separator: "<!--more-->"
 tags:
     - 도로데이터
