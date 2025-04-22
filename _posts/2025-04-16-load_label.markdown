@@ -28,7 +28,7 @@ tags:
 
 복수의 도로가 중첩되거나 병행할 경우, **도로의 등급에 따라 우선순위를 부여**하여 상위 도로를 기준으로 라벨링합니다.
 <div style="text-align: center">
-    <img src="../images/whale/ppt1.jpg" style="width: auto; height: auto;" alt="도로라벨링우선순위">
+    <img src="../images/whale/ppt1.png" style="width: auto; height: auto;" alt="도로라벨링우선순위">
 </div>
 - 1순위: 고속도로, 자동차 전용도로 등 주요 간선도로<br>
 - 2순위: 국도, 지방도 등 중간급 간선도로<br>
@@ -43,11 +43,11 @@ tags:
 도로가 분기되거나 교차되는 지점에서는 **갈림길이 시작되는 시점을 기준으로 라벨링**합니다.  
 특히 분기된 각 도로는 개별 객체로 구분하여 각각의 흐름을 반영해야 합니다.
 <div style="text-align: center">
-    <img src="../images/whale/ppt1_2.jpg" style="width: auto; height: auto;" alt="도로라벨링분기점처리">
+    <img src="../images/whale/ppt1_2.png" style="width: auto; height: auto;" alt="도로라벨링분기점처리">
 </div>
 - 분기 발생 시 갈라지는 각 도로에 대해 별도로 라벨링<br>
 <div style="text-align: center">
-    <img src="../images/whale/ppt2.jpg" style="width: auto; height: auto;" alt="도로라벨링우선순위가다른분기점처리">
+    <img src="../images/whale/ppt2.png" style="width: auto; height: auto;" alt="도로라벨링우선순위가다른분기점처리">
 </div>
 
 ---
@@ -57,7 +57,7 @@ tags:
 하나의 도로도 **진출입 방향(상행·하행)**에 따라 각각 별도로 라벨링합니다.  
 단일 객체로 보일 수 있는 도로라도, 실제로 차량 흐름이 구분되는 경우에는 **각 방향마다 개별 객체로 처리**합니다.
 <div style="text-align: center">
-    <img src="../images/whale/ppt3.jpg" style="width: auto; height: auto;" alt="상행하행구분">
+    <img src="../images/whale/ppt3.png" style="width: auto; height: auto;" alt="상행하행구분">
 </div>
 
 > 📌 상하행이 지리적으로 나뉜 경우 → 두 개의 객체로 라벨링<br>
@@ -70,7 +70,7 @@ tags:
 폴리라인 혹은 폴리곤으로 구축된 도로 라벨링 객체는 **서로 겹치지 않도록 충분한 간격을 유지**해야 합니다.  
 확대 시에도 객체 간 경계가 명확히 보이도록 하는 것이 중요합니다.
 <div style="text-align: center">
-    <img src="../images/whale/ppt4.jpg" style="width: auto; height: auto;" alt="겹침방지예시">
+    <img src="../images/whale/ppt4.png" style="width: auto; height: auto;" alt="겹침방지예시">
 </div>
 
 > 📌 겹침 없이 시각적 분리감이 있어야 후속 매핑시 오류가 발생하지 않습니다.
@@ -81,7 +81,7 @@ tags:
 
 도로에 **상행/하행 방향이 명확하게 표시된 경우**, 해당 표시를 기준으로 라벨링을 구분하여 수행합니다.
 <div style="text-align: center">
-    <img src="../images/whale/ppt5.jpg" style="width: auto; height: auto;" alt="강,갈림길라벨링기준">
+    <img src="../images/whale/ppt5.png" style="width: auto; height: auto;" alt="강,갈림길라벨링기준">
 </div>
 - 하천 등으로 인해 상·하행이 물리적으로 나뉜 경우, 상행과 하행 도로를 한 번에 라벨링합니다.<br>
 - 위아래 도로 모두에 상행/하행이 존재하는 경우, 각각의 도로를 별도로 라벨링합니다.<br>
@@ -96,10 +96,10 @@ tags:
 고가도로, 지하차도, 터널 등 **도로가 입체적으로 교차되는 구간**에서는  
 **표준노드링크 데이터의 MAX_SPD(최고제한속도)** 값을 참고하여, **속도가 높은 도로를 기준으로 라벨링**합니다.
 <div style="text-align: center">
-    <img src="../images/whale/ppt6.jpg" style="width: auto; height: auto;" alt="터널,고가도로예시">
+    <img src="../images/whale/ppt6.png" style="width: auto; height: auto;" alt="터널,고가도로예시">
 </div>
 <div style="text-align: center">
-    <img src="../images/whale/ppt7.jpg" style="width: auto; height: auto;" alt="애매한우선순위예시">
+    <img src="../images/whale/ppt7.png" style="width: auto; height: auto;" alt="애매한우선순위예시">
 </div>
 
 > 📌겹치는 경우, 더 빠른 도로를 기준으로 라벨링하고, 라벨링 기준 도로 외 나머지는 생략합니다.
@@ -111,7 +111,7 @@ tags:
 실제 복잡한 교차로나 IC(인터체인지) 구간에서는  
 위 기준을 종합적으로 적용하여 **도로 방향, 우선순위, 중첩구간 등**을 분리 라벨링합니다.
 <div style="text-align: center">
-    <img src="../images/whale/ppt8.jpg" style="width: auto; height: auto;" alt="전체예시">
+    <img src="../images/whale/ppt8.png" style="width: auto; height: auto;" alt="전체예시">
 </div>
 
 > 📌 교차점, 램프, 고가도로 등 다양한 요소가 혼합된 구간에서는 세부 판단 기준을 종합적으로 고려하여 라벨링을 수행합니다.
