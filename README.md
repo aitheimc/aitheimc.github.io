@@ -114,8 +114,15 @@ $meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family �
   <!-- DMC 팀 요청으로 title 및 description 테그 추가-->
   <title>더아이엠씨 테크 블로그</title>
   <meta name="description" content="누구나 접근하기 쉬운 AI를 만들기 위한 더아이엠씨 팀 이야기">
-  <!-- END DMC 팀 요청으로 title 및 description 테그 추가-->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WX1J8PL1JX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-WX1J8PL1JX');
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PRCBSBTR5H"></script>
   <script>
