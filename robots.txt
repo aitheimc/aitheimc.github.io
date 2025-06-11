@@ -1,3 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
+
 Sitemap: https://aitheimc.github.io/sitemap.xml
