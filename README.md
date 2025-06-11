@@ -123,7 +123,7 @@ $meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family ë
 
     gtag('config', 'G-WX1J8PL1JX');
   </script>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PRCBSBTR5H"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -131,7 +131,7 @@ $meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family ë
     gtag('js', new Date());
 
     gtag('config', 'G-PRCBSBTR5H');
-  </script>
+  </script>-->
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
