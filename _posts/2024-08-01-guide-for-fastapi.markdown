@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  AI 모델 배포를 위한 fastAPI 기본 작성 규정
-date:   2024-08-01
+date:   2025-07-28 수정
 author: Jin
 excerpt_separator: "<!--more-->"
 tags:
@@ -10,7 +10,7 @@ tags:
     - model inference
 ---
 
-완성된 사내 AI 모듈을 테스트 용으로 배포할 때 여러 방식(코드 전달 등) 및 여러 프레임워크 등 무질서하게 사용되고 있는 실정에서, 별도 요청이 없다면 파이썬 fastapi 프레임워크를 사용하는 것을 고정하였습니다. 이에 따라, `http 프로토콜 메서드`, `요청형태`, `미들웨어`, `도큐멘팅` 4가지 요소에서 대한 최소한의 사내 표준을 아래와 같이 설정합니다.
+완성된 사내 AI 모듈을 테스트 용도로 배포할 때, 현재는 코드 전달 등 다양한 방식과 여러 프레임워크가 무질서하게 사용되고 있는 실정입니다. 이에 따라 별도 요청이 없는 한, Python FastAPI 프레임워크를 기본으로 사용하기로 하였습니다. 이에 따라, `http 프로토콜 메서드`, `요청형태`, `미들웨어`, `도큐멘팅` 4가지 요소에서 대한 최소한의 표준을 아래와 같이 권장합니다. 특히 `요청형태`는 별도의 요청이 없는 경우 반드시 준수해 주시기 바랍니다.
 
 <!--more-->
 
@@ -35,25 +35,28 @@ curl -X POST http://0.0.0.0.:8080/item_post -H 'Content-Type: application/x-www-
 curl -X POST http://0.0.0.0.:8080/item_post -H 'Content-Type: application/json' -d '{"name":"string", "description":"example", "price":0}'
 ```
 
-폼 형식은 제안된 지 오래되고 익숙하게 사용되는 포멧이며, curl 기능을 수행하는 파이썬 request 패키지에서 폼 형식을 파이썬 dict 타입으로 받는 특징을 가집니다. 이에 따라, 별다른 요청이 없다면 폼 형식을 받을 수 있게 fastapi의 Form 메서드를 활용하여 코드를 작성합니다. Form 메서드를 활용항 코드 예시는 아래와 같습니다.
+JSON 형식은 API 통신에서 널리 사용되는 표준 포맷으로, 다양한 언어 및 플랫폼과의 호환성이 뛰어나고 구조화된 데이터 전달에 유리합니다. 또한, curl 기능을 수행하는 Python의 requests 패키지에서도 JSON 형식은 dict 타입으로 간편하게 처리됩니다. 이에 따라, 별도의 요청이 없는 한 JSON 형식으로 데이터를 수신하도록 하고, FastAPI의 Request Body를 활용하여 코드를 작성합니다. JSON 형식을 처리하는 코드 예시는 아래와 같습니다.
+
 
 ```python
-from fastapi import FastAPI, Form
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-app = FastAPI() # 아래 '4.1 객체선언기능'을 통해 상세 정보 확인 가능
+app = FastAPI()  # 아래 '4.1 객체선언기능'을 통해 상세 정보 확인 가능
+
+# JSON 형식의 요청 바디를 받을 모델 정의
+class Item(BaseModel):
+    name: str
+    description: str
+    price: Optional[float] = 0.7
 
 @app.post("/items_post")
-async def items_post(
-    name: str = Form(...), 
-    description: str = Form(...), 
-    price: float = Form(...)
-    ):
-
+async def items_post(item: Item):
     return {
-        "name": name,
-        "description": description,
-        "price": price
-        }
+        "name": item.name,
+        "description": item.description,
+        "price": item.price
+    }
 ```
 
 [주의] 최근 JSON 방식에 대한 요청도 빈번히 일어나고 있으며 이에 따라,  pydantic패키지에 BaseModel 메서드를 이용하여 json 포멧으로 요청을 할 수 있게 코드를 구성할 경우, request 메서드를 통해 요청을 보낸다면 json.dumps를 통해 dict 타입을 str타입으로 변경하여 요청해야 합니다.
