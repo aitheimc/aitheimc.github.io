@@ -1,0 +1,173 @@
+---
+layout: post
+title:  "Python 패키지 logsy-core 에 대한 정보"
+date:   2025-07-23 15:54:01 +0900
+author: Kimyh
+excerpt_separator: "<!--more-->"
+tags:
+    - guide
+    - markdown
+    - rule
+---
+
+log 생성 관련 함수모음 패키지.  
+
+인스톨 명령어
+
+```bash
+pip install logsy-core
+```
+
+사용시
+
+```python
+import logsy
+```
+
+
+
+<!--more-->
+
+# logutils
+
+## get_logger
+
+로그 수준의 `INFO` 보다 높은 수준을 전부 기록하는 전체 로그파일과 `INFO` 수준만을 기록하는 `info.log`, `error` 수준만을 기록하는 `error.log` 를 생성하는 함수
+
+모든 생성되는 로그파일에 있어서 `INFO` 보다 낮은 수준(`DEBUG`)은 기록하지 않는다.
+
+| 입력변수   | type   | default |
+| ---------- | ------ | ------- |
+| `log_path` | `str`  | `None`  |
+| `log_name` | `str`  | `'app'` |
+| `rollover` | `bool` | `True`  |
+
+| 출력 type | 설명                                                         |
+| --------- | ------------------------------------------------------------ |
+| `logging` | `info`, `warning`, `error`, `critical` 에 대한 로그 기록을 가능하도록 하는 로그 변수 |
+
+```python
+import logsy as lo
+log = lo.get_logger()
+# log = lu.get_logger(
+#     log_path='./log',
+#     log_name='whole', 
+#     rollover=True
+# )
+
+log.debug("DEBUG 메시지입니다.")
+log.info("INFO 메시지입니다.")
+log.warning("WARNING 메시지입니다.")
+log.error("ERROR 메시지입니다.")
+log.critical("CRITICAL 메시지입니다.")
+'''
+작업디렉토리에 log 폴더 생성
+app.log
+2025-07-22 16:55:07,485 level:INFO test.py line 160 INFO 메시지입니다.
+2025-07-22 16:55:07,485 level:WARNING test.py line 161 WARNING 메시지입니다.
+2025-07-22 16:55:07,485 level:ERROR test.py line 162 ERROR 메시지입니다.
+2025-07-22 16:55:07,485 level:CRITICAL test.py line 163 CRITICAL 메시지입니다.
+
+error.log
+2025-07-22 16:55:07,485 level:ERROR test.py line 162 ERROR 메시지입니다.
+
+info.log
+2025-07-22 16:55:07,485 level:INFO test.py line 160 INFO 메시지입니다.
+'''
+```
+
+---
+
+> `log_path`  | type : `str` | default : `None`
+>
+> .log 파일을 생성할 경로값을 입력한다. 이때 log 의 이름은 포함하지 않는다.
+>
+> 기본값은 `None` 으로 되어있으며 경로를 별도 설정하지 않는 경우 자동으로 `작업디렉토리/log` 로 설정된다.
+
+---
+
+> `log_name` | type : `str` | default : `'app'`
+>
+> .log 파일을 생성할때 만들어지는 전체 로그파일의 이름. 설정하지 않는 경우 app.log 가 자동 생성된다.
+>
+> 이 이름과는 별개로 info.log, error.log 가 자동으로 저장된다.
+
+---
+
+> `rollover` | type : `bool` | default : `True`
+>
+> 저장된 로그파일에 대해서, 날짜가 넘어간 다음 새로운 로그 파일 생성시 이전 날짜의 로그 파일은 날짜이름을 붙이면서 동시에 별개의 파일로 만들지 여부
+>
+> ```python
+> # 2025년 7월 22일에 로그 생성
+> # 경로는 ./log
+> app.log
+> error.log
+> info.log
+> 
+> # 2025년 7월 23일에 로그 생성
+> # 경로는 ./log
+> app.log
+> app.log.20250722  # 어제의 로그는 따로 분리됨
+> error.log
+> error.log.20250722
+> info.log 
+> info.log.20250722 # 어제의 로그는 따로 분리됨
+> ```
+
+---
+
+## log_sort
+
+날짜가 넘어가서 기록되는 log 파일에 대해서 폴더별로 구분하여 정리하는 함수.
+
+{저장한 로그경로}_history 라는 새로운 폴더가 생성되고, 내부에 년, 월로 구분되어 이전 날짜의 로그가 정리된다.
+
+| 입력변수   | type  | default |
+| ---------- | ----- | ------- |
+| `log_path` | `str` | `None`  |
+
+| 출력 type   | 설명 |
+| ----------- | ---- |
+| return 없음 | -    |
+
+```python
+lu.log_sort('./log')
+```
+
+---
+
+> `log_path` | type : `str` | default : `None`
+>
+> 저장된 .log 파일의 날짜별 log 파일이 기록된 경로. 
+>
+> 기본값은 `None` 으로 되어있으며 자동으로 `작업디렉토리/log` 로 설정된다.
+>
+> 만약 구분할 log 파일이 없어도 구분만 되지 않을 뿐 정상 작동한다.
+>
+> ```python
+> lu.log_sort()
+> ```
+>
+> ```python
+> '''
+> ./log/app.log
+> ./log/app.log.20250722
+> ./log/error.log
+> ./log/error.log.20250722
+> ./log/info.log 
+> ./log/info.log.20250722
+> '''
+> 
+> -->
+> 
+> '''
+> ./log/app.log
+> ./log/error.log
+> ./log/info.log 
+> 
+> ./log_history/2025/07/app.log.20250722
+> ./log_history/2025/07/error.log.20250722
+> ./log_history/2025/07/info.log.20250722
+> '''
+> ```

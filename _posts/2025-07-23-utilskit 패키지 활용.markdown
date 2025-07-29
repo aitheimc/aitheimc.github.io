@@ -11,7 +11,12 @@ tags:
 ---
 
 dataframe 관련 전처리 함수, log, plot, 데이터 내 반복 탐지, 시간 등 다양한 데이터 처리에 있어서 활용가능한 함수를 모아둔 커스텀 전처리 패키지. 
-패키지 사용 관련 요청은 더아이엠씨 김윤현 주임연구원에게 연락하세요.
+
+설치 명령어
+
+```bash
+pip install utilskit
+```
 
 <!--more-->
 
@@ -521,9 +526,9 @@ print(df)
 
 # dbutils(미완성)
 
-# logutils
+# ~~logutils~~ 패키지 분리
 
-## get_logger
+## ~~get_logger~~
 
 로그 수준의 `INFO` 보다 높은 수준을 전부 기록하는 전체 로그파일과 `INFO` 수준만을 기록하는 `info.log`, `error` 수준만을 기록하는 `error.log` 를 생성하는 함수
 
@@ -585,7 +590,7 @@ info.log
 >
 > 이 이름과는 별개로 info.log, error.log 가 자동으로 저장된다.
 
-## log_sort
+## ~~log_sort~~
 
 날짜가 넘어가서 기록되는 log 파일에 대해서 폴더별로 구분하여 정리하는 함수.
 
