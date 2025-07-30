@@ -155,6 +155,21 @@ tbody tr:hover {
 }
 ``` 
 
+### 하이라이트 스타일 수정
+`_sass /so-simple /_syntax-highlighting.scss` 에 `.highlight pre` 부분 수정
+
+```css
+.highlight pre {
+  width: 100%;
+  color:white;
+  background-color: rgb(40, 40, 40);
+}
+```
+
+`_sass /so-simple /_skin.scss`에 폰트 수정
+수정 전 색상은 주석처리해두었으며, 내용이 길어 본 README 파일에 기록하지 않음
+
+
 ### 인용문 스타일 수정
 `_sass /so-simple /_base.scss` 에 `blockquote` 부분 수정
 ```css
