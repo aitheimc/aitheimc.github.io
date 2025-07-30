@@ -1,34 +1,42 @@
 /* ==========================================================================
-   Tables
+   Simple Table (compact rows + inner borders only)
    ========================================================================== */
 
 table {
-  @include fluid-type($min-vw, $max-vw, 12px, 18px);
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   border-collapse: collapse;
-  /* For Firefox to horizontally scroll wider tables */
-  // scss-lint:disable DuplicateProperty
-  word-break: normal;
+  font-size: 0.95rem;
   word-break: keep-all;
+  /* 바깥쪽 테두리 제거 */
+  border: none;
 }
 
 th,
 td {
-  border-bottom: 1px solid;
+  padding: 0.4em 0.75em;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  /* 좌우 구분선 제거 */
+  border-left: none;
+  border-right: none;
 }
 
 th {
-  padding: 0.5em;
-  font-weight: bold;
+  font-weight: 600;
   text-align: left;
+  background-color: #f0f0f0;
+  color: #222;
 }
 
-td {
-  padding: 0.5em;
-}
-
-tr,
-td,
-th {
+tr {
   vertical-align: middle;
+}
+
+thead tr {
+  border-bottom: 2px solid #999;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
 }

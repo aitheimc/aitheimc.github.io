@@ -12,37 +12,46 @@ body {
 
 blockquote,
 q {
+  margin: 0.25em 0;
+  padding-left: 0.75em;
+  border-left: 2px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  background: none;
+  color: #333;
+  font-style: normal; /* 이탤릭 제거 */
+}
 
-  footer {
-    font-size: 80%;
-    font-style: normal;
+footer {
+  font-size: 0.75em;
+  font-style: normal;
+  margin-top: 0.25em;
+}
 
-    &::before {
-      padding-right: 0.25rem;
-      content: "\2014";
-    }
-  }
+footer::before {
+  content: "— ";
+  padding-right: 0.25rem;
 }
 
 code,
 kbd,
 samp,
 pre {
-  font-family: $monospace-font-family;
+  font-family: monospace;
 }
 
 kbd {
   display: inline-block;
-  margin: 0 0.125em;
-  padding: 0.125em 0.5em;
+  margin: 0 0.1em;
+  padding: 0.05em 0.35em;
   color: #000;
-  border: 1px solid rgb(204, 204, 204);
-  border-radius: 3px;
-  background-color: rgb(247, 247, 247);
-  font-size: 85%;
-  text-shadow: 0 1px 0 #fff;
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), inset 0 0 0 2px #fff;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), inset 0 0 0 2px #fff;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: #f5f5f5;
+  font-size: 0.85em;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 h1,
