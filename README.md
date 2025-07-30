@@ -107,6 +107,117 @@ $meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family �
  {% if site.data.text[site.locale].by %}<em>{{ site.data.text[site.locale].by }}</em> {% endif %}<span class="p-name"><b>{{ author.name }}</b></span>
 ```
 
+### 테이블 스타일
+`_sass /so-simple /_tables.scss` 수정
+
+```css
+/* ==========================================================================
+   Simple Table (compact rows + inner borders only)
+   ========================================================================== */
+
+table {
+  width: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  word-break: keep-all;
+  /* 바깥쪽 테두리 제거 */
+  border: none;
+}
+
+th,
+td {
+  padding: 0.4em 0.75em;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  /* 좌우 구분선 제거 */
+  border-left: none;
+  border-right: none;
+}
+
+th {
+  font-weight: 600;
+  text-align: left;
+  background-color: #f0f0f0;
+  color: #222;
+}
+
+tr {
+  vertical-align: middle;
+}
+
+thead tr {
+  border-bottom: 2px solid #999;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+``` 
+
+### 하이라이트 스타일 수정
+`_sass /so-simple /_syntax-highlighting.scss` 에 `.highlight pre` 부분 수정
+
+```css
+.highlight pre {
+  width: 100%;
+  color:white;
+  background-color: rgb(40, 40, 40);
+}
+```
+
+`_sass /so-simple /_skin.scss`에 폰트 수정
+수정 전 색상은 주석처리해두었으며, 내용이 길어 본 README 파일에 기록하지 않음
+
+
+### 인용문 스타일 수정
+`_sass /so-simple /_base.scss` 에 `blockquote` 부분 수정
+```css
+blockquote,
+q {
+  margin: 0.25em 0;
+  padding-left: 0.75em;
+  border-left: 2px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  background: none;
+  color: #333;
+  font-style: normal; /* 이탤릭 제거 */
+}
+
+footer {
+  font-size: 0.75em;
+  font-style: normal;
+  margin-top: 0.25em;
+}
+
+footer::before {
+  content: "— ";
+  padding-right: 0.25rem;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: monospace;
+}
+
+kbd {
+  display: inline-block;
+  margin: 0 0.1em;
+  padding: 0.05em 0.35em;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: #f5f5f5;
+  font-size: 0.85em;
+  text-shadow: none;
+  box-shadow: none;
+}
+```
+
 ### 검색 최적화 : GA(google analysis) / 네이버 코드 삽입
 
 `_includes / head.html` 내 header 사이에 구글 script 문구를 삽입하였으며, 변경 내용은 아래와 같습니다.
@@ -153,7 +264,7 @@ _config.yml 파일에 UA 입력
 
 구글 seo scipt는 header와 body 맨끝에 추가해둠.
 
-### 블로그 작성 전 읽어야 하는 문서 목록
+## 블로그 작성 전 읽어야 하는 문서 목록
 
 - [더아이엠씨 AI 블로그 post layer 작성법](https://aitheimc.github.io/guide-for-blog-write/)
 - [AI 블로그 작성을 위한 기본적인 깃허브 정보](https://aitheimc.github.io/basic-info-git-and-github/)
