@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Python 패키지 logsy-core 에 대한 정보"
+title:  "Python 패키지 logie 에 대한 정보"
 date:   2025-07-23 15:54:01 +0900
 author: Kimyh
 excerpt_separator: "<!--more-->"
@@ -10,23 +10,21 @@ tags:
     - rule
 ---
 
+<!--more-->
+
 log 생성 관련 함수모음 패키지.  
 
 인스톨 명령어
 
 ```bash
-pip install logsy-core
+pip install logie
 ```
 
 사용시
 
 ```python
-import logsy
+import logie
 ```
-
-
-
-<!--more-->
 
 # logutils
 
@@ -47,7 +45,7 @@ import logsy
 | `logging` | `info`, `warning`, `error`, `critical` 에 대한 로그 기록을 가능하도록 하는 로그 변수 |
 
 ```python
-import logsy as lo
+import logie as lo
 log = lo.get_logger()
 # log = lu.get_logger(
 #     log_path='./log',
