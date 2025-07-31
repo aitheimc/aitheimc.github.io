@@ -84,6 +84,16 @@ $meta-font-family: $IBM-Plex-sans-KR-font-family !default; /* meta-font-family �
   letter-spacing: -2px;
 }
 ```
+#### 코드쉘 내 글자 크기 축소 
+`_sass/so-simple/_reset.scss` 내용 수정
+```css
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 0.80rem; /* 2 */
+}
+```
 
 ### author
 
@@ -263,6 +273,8 @@ kbd {
 _config.yml 파일에 UA 입력
 
 구글 seo scipt는 header와 body 맨끝에 추가해둠.
+
+[주의] 마이너한 교체는 기입이 안되어 있을 수 있습니다.
 
 ## 블로그 작성 전 읽어야 하는 문서 목록
 
