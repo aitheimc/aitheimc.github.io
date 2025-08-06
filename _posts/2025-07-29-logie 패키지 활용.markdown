@@ -47,7 +47,7 @@ log = lo.get_logger()
 #     rollover=True
 # )
 
-log.debug("DEBUG 메시지입니다.")
+log.debug("DEBUG 메시지입니다.")	# DEBUG 수준의 에러 로그는 기록되지 않는다.
 log.info("INFO 메시지입니다.")
 log.warning("WARNING 메시지입니다.")
 log.error("ERROR 메시지입니다.")
