@@ -10,21 +10,29 @@ tags:
     - rule
 ---
 
-dataframe 관련 전처리 함수, log, plot, 데이터 내 반복 탐지, 시간 등 다양한 데이터 처리에 있어서 활용가능한 함수를 모아둔 커스텀 전처리 패키지. 
+이 패키지는 다양한 전처리 작업을 효율적으로 처리할 수 있도록 설계된 커스텀 유틸리티 모음입니다. 데이터 정제, 결측치 처리, 반복 패턴 탐지, 시계열 정렬 및 그룹화, 로그 추적, 시각화 등 데이터 분석 전반에 걸친 반복 작업들을 간결하게 수행할 수 있도록 돕습니다. 특히 로깅 기능과 통합된 시각화 함수는 실험 과정을 추적하고 결과를 빠르게 해석하는 데 유용하며, 복잡한 데이터 흐름을 다루는 프로젝트에서도 일관된 전처리 체계를 유지할 수 있도록 지원합니다. 분석가와 엔지니어 모두를 위한 실용적인 도구로, 빠르고 안정적인 데이터 분석 파이프라인 구축에 기여합니다.
 
-설치 명령어
+<!--more-->
+
+패키지의 설치 명령어는 아래와 같다.
 
 ```bash
 pip install utilskit
 ```
 
-<!--more-->
+사용시에는 내부의 모듈을 각각 import 하는 방식으로 활용한다.
 
-# classificationutils
+```python
+from utilskit import repeatutils as rpu
+```
 
-## confusion_matrix
+# `module` classificationutils
+
+## `def` confusion_matrix
 
 정답 리스트와 예측 리스트를 입력받아 confusion matrix 를 생성하는 함수.
+
+### parameters 
 
 | 입력변수     | type               | defalut |
 | ------------ | ------------------ | ------- |
@@ -35,9 +43,13 @@ pip install utilskit
 | `round_num`  | `int`              | 2       |
 | `percentage` | `bool`             | `True`  |
 
+### return
+
 | 출력 type          | 설명                                      |
 | ------------------ | ----------------------------------------- |
 | `pandas dataframe` | confusion matrix 의 형태를 지닌 dataframe |
+
+### 사용예시
 
 ```python
 from utilskit import classificationutils as clu
@@ -65,7 +77,7 @@ accuracy   NaN   NaN      NaN        NaN     NaN       NaN    NaN  67.0
 '''
 ```
 
----
+### parameters detail
 
 >  `class_dict` | type : `dict`
 >
@@ -108,8 +120,6 @@ accuracy   NaN   NaN      NaN        NaN     NaN       NaN    NaN  67.0
 >  # Error
 >  ```
 
----
-
 >  `ignore_idx` | type: `None` or `int` | default : `None`
 >
 >  confusion matrix 를 생성할시 무시할 id 값.
@@ -122,13 +132,9 @@ accuracy   NaN   NaN      NaN        NaN     NaN       NaN    NaN  67.0
 >  # 2 는 무시
 >  ```
 
----
-
 >  `round_num` | type : `int` | default : 2
 >
 >  결과를 표시할시 표시할 소숫점 자릿수
-
----
 
 > `percentage` | type : `bool` | default : `True`
 >
@@ -139,38 +145,42 @@ accuracy   NaN   NaN      NaN        NaN     NaN       NaN    NaN  67.0
 > percentage = False --> 0.67
 > ```
 
----
+# `module` dataframeutils
 
-# dataframeutils
-
-## read_df
+## `def` read_df
 
 csv, CSV, xlsx, xls, txt 5개 확장자에 대해서 데이터를 `pandas dataframe` 형태로 읽어오는 함수
+
+### parameters
 
 | 입력변수 | type  | default |
 | -------- | ----- | ------- |
 | `path`   | `str` | -       |
 
+### return
+
 | 출력 type          | 설명                                  |
 | ------------------ | ------------------------------------- |
 | `pandas dataframe` | 지정한 데이터를 지니고 있는 dataframe |
+
+### 사용예시
 
 ```python
 df = read_df('/home/path/data.csv')
 df = read_df('./data.xlsx')
 ```
 
----
+### parameters detail
 
 > `path` | type : `str`
 >
 > 파일명을 포함한 상대경로 또는 절대경로를 입력한다.
 
----
-
-## utc2kor
+## `def` utc2kor
 
 pandas dataframe 에 기록된 datetime 타입의 데이터에 대해서 utc 시간대를 kor 시간대로 변경하는 함수.
+
+### parameters
 
 | 입력변수 | type               | default  |
 | -------- | ------------------ | -------- |
@@ -178,9 +188,13 @@ pandas dataframe 에 기록된 datetime 타입의 데이터에 대해서 utc 시
 | `column` | `str`              | `'time'` |
 | `extend` | `bool`             | `True`   |
 
+### return
+
 | 출력 type          | 설명                           |
 | ------------------ | ------------------------------ |
 | `pandas dataframe` | 한국 시간대로 변경된 dataframe |
+
+### 사용예시
 
 ```python
 import pandas as pd
@@ -213,14 +227,14 @@ print(df)
 '''
 ```
 
----
+### parameters detail
 
 > `dataframe` | type : `pandas dataframe` 
 >
 > 변경할 utc 시간 데이터가 포함되어있는 pandas dataframe 
 >
 > ```python
->               time  value
+>            time  value
 > 0 2025-07-22 10:05:15     16
 > 1 2025-07-22 10:05:16     10
 > 2 2025-07-22 10:05:17     18
@@ -229,15 +243,11 @@ print(df)
 > 5 2025-07-22 10:05:20     13
 > ```
 
----
-
 > `column` | type : `str` | default : `'time'`
 >
 > 한국시간대로 변경하기 위해 입력할 UTC 시간대로 이루어져 있는 데이터 컬럼명.
 >
 > 이때 해당 컬럼 값은 python 의 `datetime` 형식이어야 하며 `str` 타입인 경우 에러 발생 가능성 존재.
-
----
 
 > `extend` | type : `bool` | default : `True`
 >
@@ -247,9 +257,11 @@ print(df)
 >
 > 새로운 컬럼의 명칭은 `입력한 컬럼명_kor` 이다.
 
-## adnormal2nan
+## `def` adnormal2nan
 
 pandas datafram 의 입력한 컬럼에 대해 최대, 최소값을 벗어나는 값(초과, 미만)을 NaN 값으로 치환하는 함수
+
+### parameters
 
 | 입력변수    | type               | default |
 | ----------- | ------------------ | ------- |
@@ -258,9 +270,13 @@ pandas datafram 의 입력한 컬럼에 대해 최대, 최소값을 벗어나는
 | `max_value` | `int`, `float`     | `None`  |
 | `min_value` | `int`, `float`     | `None`  |
 
+### return
+
 | 출력 type          | 설명                      |
 | ------------------ | ------------------------- |
 | `pandas dataframe` | 필터링이 적용된 dataframe |
+
+### 사용예시
 
 ```python
 import numpy as np
@@ -287,19 +303,15 @@ print(df)
 '''
 ```
 
----
+### parameters detail
 
 > `dataframe` | type : `pandas dataframe` 
 >
 > 최대, 최소 필터링을 진행할 pandas dataframe
 
----
-
 > `column` | type : `str`
 >
 > 최대, 최소 필터링을 진행할 pandas dataframe 의 컬럼 명
-
----
 
 > `max_value` & `min_value` | type : `int`, `float` | default : `None`
 >
@@ -307,9 +319,11 @@ print(df)
 >
 > 지정하지 않거나 `None` 으로 설정하는 경우 필터링 하지 않는다.
 
-## time_filling
+## `def` time_filling
 
 지정한 범위 내의 모든 시간을 초단위로 확장하여 채워넣는 함수. 확장 시 시간 외 컬럼은 NaN 값으로 채워짐.
+
+### parameters
 
 | 입력변수    | type               | default  |
 | ----------- | ------------------ | -------- |
@@ -318,9 +332,13 @@ print(df)
 | `end`       | `str`              | -        |
 | `column`    | `str`              | `'time'` |
 
+### return
+
 | 출력 type          | 설명                         |
 | ------------------ | ---------------------------- |
 | `pandas dataframe` | 시간 확장이 적용된 dataframe |
+
+### 사용예시
 
 ```python
 import numpy as np
@@ -364,13 +382,11 @@ print(df)
 '''
 ```
 
----
+### parameters
 
 > `dataframe`  | type : `pandas dataframe`
 >
 > 시간 확장을 적용할 데이터가 들어있는 pandas dataframe
-
----
 
 > `start` & `end` | type : `str` 
 >
@@ -380,24 +396,28 @@ print(df)
 >
 > 이때, end 는 항상 start 보다 미래의 시간이어야 한다.
 
----
-
 > `column` | type : `str` | default : `'time'`
 >
 > 시간 확장을 적용할 시 dataframe 의 컬럼명
 
-## isdfvalid
+## `def` isdfvalid
 
 `pandas dataframe` 이 입력한 컬럼 리스트를 전부 지니고 있는지 여부를 판단하여 True, False 를 출력하는 함수
+
+### parameters
 
 | 입력변수      | type               | default |
 | ------------- | ------------------ | ------- |
 | `dataframe`   | `pandas dataframe` | -       |
 | `column_list` | `list`             | -       |
 
+### return
+
 | 출력 type | 설명                                            |
 | --------- | ----------------------------------------------- |
 | `bool`    | 입력한 컬럼의 존재 여부에 따른 True, False 출력 |
+
+### 사용예시
 
 ```python
 import pandas as pd
@@ -411,21 +431,21 @@ if dfu.isdfvalid(df, ['value']):
 '''
 ```
 
----
+### parameters detail
 
 > `datafrmae`  | type : `pandas dataframe` 
 >
 > 컬럼 유무를 확인할 pandas dataframe.
 
----
-
 > `column_list` | type : `list`
 >
 > dataframe 에 존재하는지 여부를 확인할 컬럼명 list.
 
-## fill_repeat_nan
+## `def` fill_repeat_nan
 
 일정 횟수 이상 반복되는 NaN 구간에 대해서만 앞뒤 채우기 방식으로 결측치를 채우는 함수. 매우 긴 결측치 자체가 이상 값이 아니고, 데이터 기록중간 짧은 결측구간이 있는 경우 등에 활용 가능.
+
+### parameters
 
 | 입력변수    | type               | default |
 | ----------- | ------------------ | ------- |
@@ -433,9 +453,13 @@ if dfu.isdfvalid(df, ['value']):
 | `column`    | `str`              | -       |
 | `repeat`    | `int`              | 5       |
 
+### return
+
 | 출력 type          | 설명                      |
 | ------------------ | ------------------------- |
 | `pandas dataframe` | 결측치가 보정된 dataframe |
+
+### 사용예시
 
 ```python
 import pandas as pd
@@ -479,25 +503,21 @@ print(df)
 '''
 ```
 
----
+### parameters
 
 > `dataframe` | type : `pandas dataframe` 
 >
 > 결측치 보정을 진행할 dataframe.
 
----
-
 >`column` | type : `str` 
 >
 >결측치의 반복 횟수를 계산하고 보정할 컬럼명.
-
----
 
 > `repeat` | type : `int` | default : 5
 >
 > 보정할 결측치의 반복 횟수 기준. 입력한 값 이상 반복되면 해당 값은 우선 앞의 값으로 채워지고, 만약 앞의 값이 존재하지 않는 경우 뒤의 값으로 채워진다.
 
-## pin2nan(미완성)
+## `def` pin2nan(미완성)
 
 이상치의 범위에는 속하지 않지만 데이터 흐름상 이상치로 볼 필요가 있는 국소 범위의 값을 결측치로 변경 후 앞뒤 채우기를 진행하는 함수
 
@@ -524,7 +544,218 @@ print(df)
 >
 > 내용
 
-# dbutils(미완성)
+# `module` dbutils
+
+## `def` query2db
+
+DB 를 지정한다음 해당 DB 에 대해서 SQL query 문을 보내는 함수.
+
+DDL (Data Definition Language), DML (Data Manipulation Language), DCL (Data Control Language) 에 대한 모든 명령문을 보내는게 가능하지만
+
+이는 함수 사용시에 지정하는 사용자(user) 의 권한에 의해 사용 불가능한 문법이 존재할 수 있다.
+
+예) DCL 에 속하는 GRANT, REVOKE 등
+
+### parameters
+
+| 입력변수     | type   | default     |
+| ------------ | ------ | ----------- |
+| `query`      | `str`  | -           |
+| `host`       | `str`  | -           |
+| `port`       | `int`  | -           |
+| `user`       | `str`  | -           |
+| `password`   | `all`  | -           |
+| `db_name`    | `str`  | -           |
+| `charset`    | `str`  | `'utf8mb4'` |
+| `autocommit` | `bool` | `True`      |
+
+### return
+
+| 출력 type | 설명                                 |
+| --------- | ------------------------------------ |
+| `all`     | query 에 의해 출력될 수 있는 결과값. |
+
+### 사용예시
+
+```python
+from utilskit import dbutils as dbu
+query = f"""
+SELECT col1, col2 FROM table1 
+WHERE col3='aaa'
+"""
+info = dbu.query2db(
+    query=query,
+    host='123.123.123.123',
+    port=3306,
+    user='user_id',
+    passward='user_pw',
+    db_name='DB_NAME'
+)
+print(info)
+'''
+(('value1', 'value2'),)
+'''
+'''
+만약 출력값이 존재할 수 없는 query 문법(예: DELETE, UPDATE 등)의 경우 빈 리스트 [] 가 반환된다.
+'''
+```
+
+### parameters detail
+
+> `query`  | type : `str` 
+>
+> DB 에 대해 적용하고자 하는 SQL 문법 기반의 쿼리문.
+>
+> SELECT, UPDATE, INSERT, DELETE 와 같은 DML 을 사용하는 것이 가능하다.
+>
+> 그외의 DDL, DCL 등, 입력한 `user` 의 권한 범위에 따라 존재하는 모든 SQL 구문에 대해 적용가능하다.
+>
+> 단, 오류가 없는 적절한 SQL query 문을 적어야하며 함수 내부에서 SQL 문법에 대한 조정은 이루어지지 않는다.
+>
+> ※ 출력에 대한 주의점
+>
+> 1. query 에 따라서 이 함수의 출력값이 결정되며, SELECT 와 같은 출력이 존재하는 query 를 날릴 경우 작성한 문법에 대응하는 결과값이 출력되게 된다.
+> 2. DELETE, UPDATE, INSERT 와 같은 DB 로부터의 출력 결과값이 존재하지 않는 query 문을 날릴 경우 출력은 항상 빈 리스트 `[]` 가 나온다.
+>
+> ```python
+> # SELECT 구문 예시
+> """
+> SELECT * FROM table1
+> WHERE col1 = 'a'
+> """
+> # UPDATE 구문 예시
+> """
+> UPDATE table1 set col1='a'
+> WHERE col2='b'
+> """
+> ```
+
+> `host`  | type : `str` 
+>
+> 접속하고자 하는 DB 의 host 주소. 예: 123.123.123.123
+
+> `port` | type: `int`
+>
+> 접속하고자 하는 DB 가 구축되어있는 port 값
+
+> `user` | type : `str`
+>
+> DB 에 접속할때 사용할 유저 ID
+
+> `password` | type : `all`
+>
+> DB 에 접속할때 사용할 유저 ID 의 비밀번호
+
+> `db_name` | type : `str`
+>
+> 접속할 DB 의 명칭
+
+> `charset` | type : `str` | default : `'utf8mb4'`
+>
+> 접속할 DB 의 문자 인코딩 방식. 기본값은 보편적으로 가장 많이 쓰이는 `'utf8mb4'` 로 지정되어있으며 
+>
+> 아무런 값을 지정하지 않을 경우 자동으로 기본값으로 지정된다.
+
+> `autocommit` | type : `bool` | default : `True`
+>
+> 입력한 쿼리문에 대해서 자동 커밋을 할지의 설정 여부. 기본값은 `True` 로 되어있으며 
+>
+> `True` 인 경우 쿼리문 마지막에 `;` 을 넣지 않아도 자동으로 커밋 된다.
+
+## `def` df2db
+
+pandas dataframe 의 형태로 구성되어있는 데이터 변수를 column 명칭, data 값 을 포함해서 구성된 형태 그대로 DB 에 업로드하는 함수.
+
+만약 존재하지 않는 table 에 업로드하는 경우 해당 table 이 새로 생성된다. 단, 새로 생성시킬 경우 그 table 에 대한 상세 설정을 하는 것은 불가능하다.
+
+예를 들어 
+
+```python
+   col1  col2
+0     1    a
+1     2    b
+```
+
+위의 형태의 dataframe 변수가 있다고 가정하고 이 dataframe 을 'table1' 이라는 이름으로 DB 에 업로드했을때, 만약 기존 DB 에 table1 이라는 테이블이 존재하지 않은 경우 table1 이라는 테이블이 새로 생성된다. 이때, col1 은 `BIGINT`, col2 는 `TEXT` 와 같이 데이터 유형이 자동 설정된다. 이 데이터유형을 `int`, `VARCHAR` 등과 같이 바꾸는 것은 본 함수로는 불가능하며 자체적으로 DB 에 접속해서 조정을 해야한다.
+
+하지만 만약 기존 DB 에 table1 이라는 테이블이 이미 존재할 경우, 그 테이블에 그대로 올라간다. 이때 만약 이미 설정되어있는 데이터유형과 업로드할 dataframe 의 데이터유형이 다를 경우 업로드가 불가능하다는 에러가 발생한다.
+
+### parameters
+
+| 입력변수    | type               | default     |
+| ----------- | ------------------ | ----------- |
+| `dataframe` | `pandas dataframe` | -           |
+| `table`     | `str`              | -           |
+| `host`      | `str`              | -           |
+| `port`      | `int`              | -           |
+| `user`      | `str`              | -           |
+| `password`  | `all`              | -           |
+| `db_name`   | `str`              | -           |
+| `charset`   | `str`              | `'utf8mb4'` |
+| `index`     | `bool`             | `'False'`   |
+
+### return
+
+| 출력 type | 설명                                |
+| --------- | ----------------------------------- |
+| -         | 본 함수는 출력값이 존재하지 않는다. |
+
+### 사용예시
+
+```python
+from utilskit import dbutils as dbu
+from utilskit import dataframeutils as dfu
+df = dfu.read_df('./ex.csv')
+dbu.df2db(
+    df=df, 
+    table='test_db', 
+    host='123.123.123.123', 
+    port=3306, 
+    user='user_id', 
+    password='user_pw', 
+    db_name='db_name'
+)
+```
+
+### parameters detail
+
+> `dataframe`  | type : `pandas dataframe`
+>
+> DB 에 업로드하고자 하는 pandas dataframe 변수
+
+> `table`  | type : `str` 
+>
+> dataframe 을 DB 에 업로드 할 시 적용할 테이블이름
+
+> `host` | type : `str`
+>
+> 접속할 DB 의 호스트 주소
+
+> `port` | type : `int`
+>
+> 접속할 DB 에 할당되어있는 port 값
+
+> `user` | type : `str`
+>
+> DB 에 접속할 경우 사용할 유저 ID
+
+> `password` | type : `all`
+>
+> DB 에 접속할 때 사용할 유저 ID 의 비밀번호
+
+> `db_name` | type : `str`
+>
+> 접속할 DB 의 이름
+
+> `charset` | type : `str`
+>
+> 접속할 DB 의 문자 인코딩 방식. 기본값은 보편적으로 가장 많이 쓰이는 `'utf8mb4'` 로 지정되어있으며 
+>
+> 아무런 값을 지정하지 않을 경우 자동으로 기본값으로 지정된다.
+
+> `index` | type : `bool`
+>
+> dataFrame의 인덱스를 테이블에 함께 저장할지 여부. True/False 로 지정 가능하며 기본값은 False 이다.
 
 # ~~logutils~~ 패키지 분리
 
@@ -618,11 +849,13 @@ lu.log_sort('./log')
 >
 > 만약 구분할 log 파일이 없어도 구분만 되지 않을 뿐 정상 작동한다.
 
-# plotutils
+# `module` plotutils
 
-## draw_plot
+## `def` draw_plot
 
 `matplotlib` 을 통해 하나의 메인 이미지 를 그리고 저장하는 함수
+
+### parameters
 
 | 입력변수   | type            | default |
 | ----------- | --------------- | ---------- |
@@ -656,9 +889,13 @@ lu.log_sort('./log')
 | `alpha_list` | `list` | `None` |
 | `save_path`   | `str`           | `None`     |
 
+### return
+
 | 출력 type      | 설명 |
 | -------------- | ---- |
 | return 값 없음 | -    |
+
+### 사용 예시
 
 ```python
 # 필수 변수만 입력
@@ -719,15 +956,13 @@ plu.draw_plot(
 
 ![basic](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\whole.png)
 
----
+### parameters detail
 
 색깔
 
 >  모든 색깔 변수에 대해서 공통적용 가능
 >
 > default, blue, green, red, cyan, magenta, yellow, black, white, orange, pink, khaki, gold, skyblue, navy, lightgreen, olive, violet, gray, brown
-
----
 
 기본 구역
 
@@ -742,8 +977,6 @@ plu.draw_plot(
 > `y` : type : `list`, `np.array`
 >
 > 그래프의 y 값 리스트
-
----
 
 이미지 크기 & 값 범위
 
@@ -766,8 +999,6 @@ plu.draw_plot(
 
 ![fig](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\fig.png)
 
----
-
 라벨링
 
 > `x_label` & `y_label` | type : `str` | default : `None`
@@ -788,8 +1019,6 @@ plu.draw_plot(
 ```
 
 ![label](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\label.png)
-
----
 
 폰트 - 기본
 
@@ -812,8 +1041,6 @@ plu.draw_plot(
 
 ![font-basic](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\font-basic.png)
 
----
-
 폰트 - 라벨
 
 > `x_label_font`, `y_label_font` | type : `int` | default : 13
@@ -831,8 +1058,6 @@ plu.draw_plot(
 ```
 
 ![font-label](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\font-label.png)
-
----
 
 선 스타일
 
@@ -866,8 +1091,6 @@ plu.draw_plot(
 ```
 
 ![line](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\line.png)
-
----
 
 마커 스타일
 
@@ -928,8 +1151,6 @@ plu.draw_plot(
 
 ![marker](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\marker.png)
 
----
-
 데이터 추가
 
 > `add_x_list` , `add_y_list`, `add_color_list` | type : `list` | default : `None`
@@ -951,8 +1172,6 @@ plu.draw_plot(
 ```
 
 ![add](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\add.png)
-
----
 
 구역 강조
 
@@ -989,21 +1208,21 @@ plu.draw_plot(
 
 ![focus](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\focus.png)
 
----
-
 저장
 
 > `save_path` | type : `str` | default : `None`
 >
 > 이미지를 저장할시 지정하는 경로값. 값을 지정하지 않거나 `None` 으로 입력하면 저장되지 않는다.
 
-## draw_subplot
+## `def` draw_subplot
 
 하나의 이미지 내에 subplot 을 생성하여 복수의 그래프를 나열하는 함수.
 
 기본적으로 서브 그래프들은 아래로 나열한다.
 
 현재는 서브 그래프 각각에 대한 스타일 적용은 불가능하다.
+
+### parameters
 
 | 입력변수           | type    | default |
 | ------------------ | ------- | ------- |
@@ -1024,9 +1243,13 @@ plu.draw_plot(
 | `save_path`        | `str`   | `None`  |
 | `save_name`        | `str`   | `None`  |
 
+### return
+
 | 출력 type      | 설명 |
 | -------------- | ---- |
 | return 값 없음 |      |
+
+### 사용예시
 
 ```python
 # 필수 변수만 활용
@@ -1082,7 +1305,7 @@ plu.draw_subplot(
 
 ![sub_custom](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\sub_custom.png)
 
----
+### parameters detail
 
 기본
 
@@ -1098,8 +1321,6 @@ plu.draw_subplot(
 >
 > 각 서브플롯에 적용될 y 값 리스트. 순서에 따라 적용된다.
 
----
-
 서브 플롯의 위치
 
 > `sub_row_idx` | type : `int` | default : `None`
@@ -1111,8 +1332,6 @@ plu.draw_subplot(
 > 서브 플롯을 위치시킬 열 공간 index. 기본적으로 1의 값을 지닌다.
 
 ![row_col](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\row_col.png)
-
----
 
 이미지 크기, 값 범위
 
@@ -1132,11 +1351,7 @@ plu.draw_subplot(
 
 ![row_col_fig](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\row_col_fig.png)
 
----
-
  폰트
-
-
 
 > `title_font` | type : `int` | default : 13
 >
@@ -1151,8 +1366,6 @@ plu.draw_subplot(
 > 각 서브플롯 y 축 값의 폰트 크기 설정
 
 ![sub-font](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\sub-font.png)
-
----
 
 구역 강조
 
@@ -1170,8 +1383,6 @@ plu.draw_subplot(
 
 ![sub-focus](C:\Users\10-250423\Desktop\python\utilskit\plot_explain_images\sub-focus.png)
 
----
-
 저장
 
 > `save_path` | type : `str` | default : `None`
@@ -1182,207 +1393,11 @@ plu.draw_subplot(
 >
 > 저장경로 설정시 저장할 이미지 파일의 이름. 만약 경로를 설정하지 않는다면 해당 변수는 아무런 의미를 지니지 않는다.
 
-# repeatutils
+# `module` repeatutils
 
 ## ~~get_repeat_section~~ 폐기
 
-입력한 데이터 리스트 내에서 지정한 반복횟수 이상 반복되는 구간을 전부 추출하는 함수.
-
-기본적으로 결측치(NaN)구간은 계산에서 제외되어있지만 설정에 따라 포함시킬 수 있다.
-
-| 입력변수     | type                | default |
-| ------------ | ------------------- | ------- |
-| `data`       | `list` , `np.array` | -       |
-| `repeat`     | `int`               | -       |
-| `except_nan` | `bool`              | `True`  |
-
-| 출력 type | 설명                                                         |
-| --------- | ------------------------------------------------------------ |
-| `dict`    | 반복되는 값을 key 값으로 지니고 반복되는 구역을 value 값으로 지닌 dict |
-
-```python
-import numpy as np
-from utilskit import repeatutils as rpu
-data = np.array(
-    [
-        1, 1, 1, 1, 1,  # 0 ~ 4
-        2, 2, 2, 2,     # 5 ~ 8
-        3, 3,           # 9 ~ 10
-        4, 4, 4,        # 11 ~ 13
-        np.nan, np.nan, np.nan, np.nan,  # 14 ~ 17
-        1, 1, 1, 1,     # 18 ~ 21
-        3, 3, 3,        # 22 ~ 24
-        np.nan, np.nan, np.nan, np.nan, np.nan, # 25 ~ 29
-        1, 1, 1, 1, 1, 1, 1,    # 30 ~ 36
-        np.nan  # 37
-    ]
-)
-print(data)
-repeat_section = rpu.get_repeat_section(
-    data=data,
-    repeat=4,
-    except_nan=False
-)
-print(repeat_section)
-'''
-{
-    '1.0': [(0, 4), (18, 21), (30, 36)], 
-    '2.0': [(5, 8)], 
-    'nan': [(14, 17), (25, 29)]
-}
-'''
-```
-
----
-
-> `data`  | type : `list`, `np.array` 
->
-> 반복되는 구간을 산정할 data 리스트. 데이터의 구성은 정수형, 문자열 전부 가능하다.
-
-> `repeat` | type : `int` 
->
-> 반복기준 값. 지정한 값 이상 반복되는 구간을 전부 산정하게 된다.
-
-> `except_nan` | type : `bool` | default : `True`
->
-> 반복되는 구간을 계산할 값 중에 NaN 을 포함시킬 시 여부. 기본적으로 불포함되어있으며 포함시킬 경우 `'nan'` 으로 구분된다.
-
 ## ~~get_stan_repeat_section~~ 폐기
-
-기준 값을 정한 다음, 입력한 데이터 내에서 해당 값이 기준 횟수 이상, 이하 또는 동일하게 반복되는 구간을 추출하는 함수.
-
-해당구간에 대해 반전시켜 결과를 추출하는 것도 가능하다.
-
-| 입력변수  | type               | default |
-| --------- | ------------------ | ------- |
-| `data`    | `list`, `np.array` | -       |
-| `value`   | `all`              | -       |
-| `repeat`  | `int`              | -       |
-| `mode`    | `str`              | `'a'`   |
-| `reverse` | `bool`             | `False` |
-
-| 출력 type | 설명                                                         |
-| --------- | ------------------------------------------------------------ |
-| `list`    | 설정값에 대해 계산된 반복 구간 (시작 index, 끝 index) tuple 로 이루어진 list |
-
-```python
-import numpy as np
-from utilskit import repeatutils as rpu
-data = np.array(
-    [
-        1, 1, 1, 1, 1,  # 0 ~ 4
-        2, 2, 2, 2,     # 5 ~ 8
-        3, 3,           # 9 ~ 10
-        4, 4, 4,        # 11 ~ 13
-        np.nan, np.nan, np.nan, np.nan,  # 14 ~ 17
-        1, 1, 1, 1,     # 18 ~ 21
-        3, 3, 3,        # 22 ~ 24
-        np.nan, np.nan, np.nan, np.nan, np.nan, # 25 ~ 29
-        1, 1, 1, 1, 1, 1, 1,    # 30 ~ 36
-        np.nan  # 37
-    ]
-)
-repeat_section = rpu.get_stan_repeat_section(
-    data=data,
-    value=1,
-    repeat=4,
-    mode='a',
-    reverse=False
-)
-print(repeat_section)
-'''
-[(0, 4), (18, 21), (30, 36)]
-'''
-```
-
----
-
-> `data`  | type : `list`, `np.array`
->
-> 구간을 산정할 데이터 리스트. list 혹은 np.array 타입으로 입력 가능하다.
-
----
-
-> `value` | type : `all` 
->
-> 구간 산정시의 기준 값. 형식은 입력된 데이터의 내부 값에 따라 어떤 형식이든 가능하며,
->
-> 만약 NaN 에 대한 구간을 산정하고자 하는 경우 np.nan 또는 `'nan'` 로 입력 가능.
-
----
-
-> `repeat` | type : `int`
->
-> 구간 산정시의 기준 횟수. 이상 또는 이하로 계산된다.
-
----
-
-> `mode` | type : `str` | `default` : `'a'` | `limit` : `'a'`, `'b'`, `'e'`
->
-> 구간 산정시 이상으로 할지 이하로 할지의 모드 선택값. `'a'` (above) 로 할 경우 기준횟수 이상 반복된 구간을 계산한다.
->
-> `'b'` (below) 로 할 경우 기준 횟수 이하 반복된 구간을 계산한다. 
->
-> `'e'` (equal) 로 할 경우 기준 횟수과 동일하게 반복된 구간을 계산한다.
->
-> 입력가능한 값은  `'a'`, `'b'`  또는 `'e'` 만 존재하며 이외의 값을 입력할 경우 에러가 발생한다.
->
-> ```python
-> # 값 1 이 5번 이상 반복하는 구간 추출
-> repeat_section = rpu.get_stan_repeat_section(
->  data=data, value=1, repeat=5, mode='a'
-> )
-> '''
-> [(0, 4), (30, 36)]
-> '''
-> ```
->
-> ```python
-> # 값 1이 5번 이하 반복하는 구간 추출
-> repeat_section = rpu.get_stan_repeat_section(
->  data=data, value=1, repeat=5, mode='b'
-> )
-> print(repeat_section)
-> '''
-> [(0, 4), (18, 21)]
-> '''
-> ```
->
-> ```python
-> # 값 1이 정확히 5번 반복되는 구간 추출
-> repeat_section = rpu.get_stan_repeat_section(
->  data=data, value=1, repeat=5, mode='e'
-> )
-> print(repeat_section)
-> '''
-> [(0, 4)]
-> '''
-> ```
-
----
-
-> `reverse` | type : `bool` | default : `False`
->
-> 산출된 구간에 대해서 반전시킨 구간을 추출
->
-> ```python
-> # 값 1 이 4번 이상 반복되는 구간
-> repeat_section = rpu.get_stan_repeat_section(
->  data=data, value=1, repeat=4, mode='a', reverse=False
-> )
-> '''
-> [(0, 4), (18, 21), (30, 36)]
-> '''
-> # 위의 구간에 대한 반전 구간 추출
-> repeat_section = rpu.get_stan_repeat_section(
->  data=data, value=1, repeat=4, mode='a', reverse=True
-> )
-> '''
-> [(5, 17), (22, 29), (37, 37)]
-> '''
-> ```
-
----
 
 ## get_section
 
@@ -1400,6 +1415,8 @@ print(repeat_section)
 
 예3) 10 을 초과하는 값이 5번 이하 반복되는 구간에 대한 반전 구간 산출
 
+### parameters
+
 | 입력변수     | type               | default |
 | ------------ | ------------------ | ------- |
 | `data`       | `list`, `np.array` | -       |
@@ -1414,9 +1431,13 @@ print(repeat_section)
 | `except_nan` | `bool`             | `True`  |
 | `reverse`    | `bool`             | `False` |
 
+### return
+
 | 출력 type | 설명                                                         |
 | --------- | ------------------------------------------------------------ |
 | `dict`    | 기준값을 key, 반복구간 tuple 로 구성된 list 를 value 로 지닌 dict |
+
+### 사용예시
 
 ```python
 import numpy as np
@@ -1484,21 +1505,15 @@ print(result)
 '''
 ```
 
-
-
----
+### parameters detail
 
 > `data`  | type : `list`, `np.array` 
 >
 > 반복되는 구간을 산출할 데이터 리스트. 데이터 내부의 값의 형식은 정해져 있지 않고 뭐든지 가능하다.
 
----
-
 > `repeat`  | type : `int` 
 >
 > 계산할 구간에 대한 반복횟수 기준. 1이하 값의 경우 반복한다고 할 수 없기에 최소 2 이상의 값을 입력해야한다.
-
----
 
 > `mode` | type : `str` | default : `'a'` | limit : `'a'`, `'b'`, `'e'`
 >
@@ -1539,8 +1554,6 @@ result = rpu.get_section(
 ''''
 ```
 
----
-
 > `key` | type : `all` | default : `None`
 >
 > 반복구간을 계산할때 반복되는 기준값. 예를 들어 key = 1 로 지정하면 1 이라는 값에 대해서만 반복구간을 계산한다.
@@ -1573,8 +1586,6 @@ result = rpu.get_section(
 > '''
 > ```
 
----
-
 > `max_key` | type : `int`, `float` | default : `None`
 >
 > 반복구간을 계산할때의 최대 기준값. `between` 및 `max_equal` 의 값에 따라 이상/이하/초과/미만 의 여부가 결정되며 기본값은 **입력된 값 이상**으로 되어있다.
@@ -1601,8 +1612,6 @@ result = rpu.get_section(
 > {'3.0_over': [(9, 13)]}
 > '''
 > ```
-
----
 
 > `min_key` | type : `int`, `float` | default : `None`
 >
@@ -1634,8 +1643,6 @@ result = rpu.get_section(
 > '''
 > ```
 
----
-
 > `between`  | type : `bool` | default : `False`
 >
 > 최대(`max_key`) 및 최소(`min_key`) 기준값을 지정했을 때, 그 사잇값을 구할것인지의 여부를 결정하는 변수. 기본적으로는 `False` 로 되어있기에 최대 이상, 최소 이하를 계산하게되며 만약 `True` 로 지정한 경우 최소 ~ 최대의 사잇값을 기준으로 구간을 계산하게 된다.
@@ -1663,8 +1670,6 @@ result = rpu.get_section(
 > {'2_3': [(5, 10)]}
 > '''
 > ```
-
----
 
 > `max_equal` , `min_equal` | type : `bool` | default : `True`
 >
@@ -1696,8 +1701,6 @@ result = rpu.get_section(
 > '''
 > ```
 
----
-
 > `except_nan` | type : `bool` | default : `True`
 >
 > 반복구간을 계산할 값의 범위에 NaN 값을 포함시킬지 여부. 기본적으로 계산범위에 NaN 은 넣지 않는다.
@@ -1726,8 +1729,6 @@ result = rpu.get_section(
 > {'nan': [(14, 17), (25, 29)], '1.0': [(0, 4), (18, 21), (30, 36)], '2.0': [(5, 8)]}
 > '''
 > ```
-
----
 
 > `reverse` | type : `bool` | default : `False`
 >
@@ -1764,21 +1765,25 @@ result = rpu.get_section(
 > '''
 > ```
 
----
+# `module` timutils
 
-# timutils
-
-## get_now
+## `def` get_now
 
 현재의 시간을 `str` 포맷으로 원하는 형태로 정해서 추출하는 함수
+
+### parameters
 
 | 입력변수 | type  | default               |
 | -------- | ----- | --------------------- |
 | `form`   | `str` | `'년-월-일 시:분:초'` |
 
+### return
+
 | 출력 type | 설명                                                       |
 | --------- | ---------------------------------------------------------- |
 | `str`     | `form` 으로 설정한 형태로 현재 시간이 표현된 데이터 문자열 |
+
+### 사용예시
 
 ```python
 from utilskit import timeutils as tiu
@@ -1788,7 +1793,7 @@ now = tiu.get_now()
 '''
 ```
 
----
+### parameters detail
 
 > `form`  | type : `str` | default : `'년-월-일 시:분:초'`
 >
@@ -1814,21 +1819,25 @@ now = tiu.get_now()
 > '''
 > ```
 
-## time_measure
+## `module` time_measure
 
 입력받은 숫자값 시, 분, 초로 분할하여 환산하여 얻어내는 함수.
 
 예: 3675 --> 1(시간) 1(분) 15(초)
 
+### parameters
+
 | 입력변수 | type            | default |
 | -------- | --------------- | ------- |
 | `t`      | `int` , `float` | -       |
+
+### return
 
 | 출력 type           | 설명                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | `int`, `int`, `int` | 총 3개의 `int` 값이 반환되며 순서대로 계산된 시간, 분, 초 를 의미한다. |
 
-사용예시
+### 사용예시
 
 ```python
 hh, mm, ss = tiu.time_measure(3675)
@@ -1838,18 +1847,19 @@ print(f'입력된 값은 {hh}시간 {mm}분 {ss}초 입니다.')
 '''
 ```
 
----
+### parameters detail
 
 > `t`  | type : `int`, `float` 
 >
 > 시분초 로 환산하여 계산할 숫자값.  음수를 입력한 경우 0으로 취급한다.
 
----
-
-## get_date_list
+## `def` get_date_list
 
 입력된 년, 월, 시작일, 끝일 에 따라 각 값에 해당되는 모든 날짜값을 문자열로 구성하여 list 로 반환하는 함수
+
 단, 년도에 해당되는 변수는 1개년도에 대해서만 가능하며 윤년에 대해서는 존재하지 않는 날짜가 반환될 수 있다. (2025년 2월 29일 등)
+
+### parameters
 
 | 입력변수         | type   | default |
 | ---------------- | ------ | ------- |
@@ -1858,9 +1868,13 @@ print(f'입력된 값은 {hh}시간 {mm}분 {ss}초 입니다.')
 | `start_day_list` | `list` | -       |
 | `end_day_list`   | `list` | -       |
 
+### return
+
 | 출력 type | 설명                                    |
 | --------- | --------------------------------------- |
 | `list`    | 설정한 모든 날짜 문자열이 담겨있는 list |
+
+### 사용예시
 
 ```python
 date_list = tiu.get_date_list(
@@ -1875,13 +1889,11 @@ print(date_list)
 '''
 ```
 
----
+### parameters detail
 
 > `year`  | type : `int` 
 >
 > 날짜 문자열 리스트를 생성할때의 기준 연도값. 실제 날짜를 계산하는 것이 아니기에 어떤숫자를 입력하는 것도 가능하다.
-
----
 
 > `mon_list` | type : `list`
 >
@@ -1928,32 +1940,38 @@ date_list = tiu.get_date_list(
 '''
 ```
 
-# utils
+# `module` utils
 
-## envs_setting
+## `def` envs_setting
 
 각종 random seed 값을 전부 고정하는 함수. 현재 numpy.random 과 random 2개 시드만 지정함
+
+### parameters
 
 | 입력변수 | type  | default |
 | -------- | ----- | ------- |
 | `seed`   | `int` | 42      |
 
+### return
+
 | 출력 type      | 설명 |
 | -------------- | ---- |
 | return 값 없음 | -    |
+
+### 사용예시
 
 ```python
 from utilskit import utils as u
 u.envs_setting()
 ```
 
----
+### parameters detail
 
 > `seed`  | type : `int` | default : 42
 >
 > 각종 랜덤변수에 대한 시드값.
 
-## get_error_info
+## `def` get_error_info
 
 에러발생시의 에러 텍스트를 전부 str 형식으로 추출하여 반환하는 함수.
 
@@ -1961,13 +1979,19 @@ u.envs_setting()
 
 예외 발생시 에러메세지가 시스템상 출력되지 않더라도 기록 용도로 활용 가능하다.
 
+### parameters
+
 | 입력변수 | type | default |
 | -------- | ---- | ------- |
 | -        | -    | -       |
 
+### return
+
 | 출력 type | 설명                                              |
 | --------- | ------------------------------------------------- |
 | `str`     | 에러발생시에 출력되는 모든 텍스트를 저장한 문자열 |
+
+### 사용예시
 
 ```python
 from utilskit import utils as u
@@ -1987,7 +2011,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str
 '''
 ```
 
----
+### parameters detail
 
 입력받는 변수는 별도로 존재하지 않음.
 
@@ -1997,41 +2021,37 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str
 
 
 
-
-
-
-
-
-
-## 함수명
+## `def` 함수명
 
 함수설명
+
+### parameters
 
 | 입력변수 | type | default |
 | -------- | ---- | ------- |
 |          |      |         |
 
+### return
+
 | 출력 type | 설명 |
 | --------- | ---- |
 |           |      |
+
+### 사용예시
 
 ```python
 
 ```
 
----
+### parameters detail
 
 > `변수명1`  | type : `a` | default : `a`
 >
 > 내용
 
----
-
 > `변수명2`  | type : `a` | default : `a`
 >
 > 내용
-
----
 
 
 
