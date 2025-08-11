@@ -30,11 +30,11 @@ import logie
 로그 수준의 `INFO` 보다 높은 수준을 전부 기록하는 전체 로그파일과 `INFO` 수준만을 기록하는 `info.log`, `error` 수준만을 기록하는 `error.log` 를 생성하는 함수. 모든 생성되는 로그파일에 있어서 `INFO` 보다 낮은 수준(`DEBUG`)은 기록하지 않는다.
 
 ### Parameters
-
 | 입력변수   | type   | default |
 | ---------- | ------ | ------- |
 | `log_path` | `str`  | `None`  |
 | `log_name` | `str`  | `'app'` |
+| `display`  | `bool` | `True`  |
 | `rollover` | `bool` | `True`  |
 
 ### 사용예시
@@ -87,6 +87,12 @@ info.log
 > .log 파일을 생성할때 만들어지는 전체 로그파일의 이름. 설정하지 않는 경우 app.log 가 자동 생성된다.
 >
 > 이 이름과는 별개로 info.log, error.log 가 자동으로 저장된다.
+
+> `display` | type: `bool` | default : `True`
+>
+> log 메시지를 terminal 등의 콘솔 화면에 print 와 동일한 형태로 출력할지 여부.
+>
+> 기본적으로 True 로 설정되어있으며 만약 출력을 원하지 않는 경우 False 를 해두어야 한다.
 
 
 > `rollover` | type : `bool` | default : `True`
