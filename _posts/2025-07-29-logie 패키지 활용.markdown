@@ -30,6 +30,7 @@ import logie
 로그 수준의 `INFO` 보다 높은 수준을 전부 기록하는 전체 로그파일과 `INFO` 수준만을 기록하는 `info.log`, `error` 수준만을 기록하는 `error.log` 를 생성하는 함수. 모든 생성되는 로그파일에 있어서 `INFO` 보다 낮은 수준(`DEBUG`)은 기록하지 않는다.
 
 ### Parameters
+
 | 입력변수   | type   | default |
 | ---------- | ------ | ------- |
 | `log_path` | `str`  | `None`  |
