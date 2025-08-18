@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  공개 가능한 리서치 리포팅을 위한 환경 구성 소개
+title:  "[교육용] 공개 가능한 리서치 리포팅을 위한 환경 구성 소개"
 date:   2025-07-28
 author: Jin
 excerpt_separator: "<!--more-->"
@@ -30,6 +30,6 @@ tags:
 
 |단계|환경구성 방법|컨텐츠 업로드 방식|
 |---|---|---|
-|[기술블로그](https://aitheimc.github.io/)|[깃허브 블로그 배포포](https://github.com/aitheimc/aitheimc.github.io/blob/main/README.md)|[마크다운 작성 ruled  by So Simple](https://aitheimc.github.io/guide-for-blog-write/)|
+|[기술블로그](https://aitheimc.github.io/)|[깃허브 블로그 배포](https://github.com/aitheimc/aitheimc.github.io/blob/main/README.md)|[마크다운 작성 ruled  by So Simple](https://aitheimc.github.io/guide-for-blog-write/)|
 |API 서비스|파이썬 프레임워크(fastapi)활용<br>리버스 프록시 적용 중|[fastapi 코드 기본 작성 규정](https://aitheimc.github.io/guide-for-fastapi/)|
 |[데이터관리](https://huggingface.co/theimc)|[허깅페이스 데이터셋](https://huggingface.co/theimc/datasets)|-|
