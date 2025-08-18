@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  [교육용] AI 모델 배포를 위한 fastAPI 기본 작성 규정
+title:  "[교육용] AI 모델 배포를 위한 fastAPI 기본 작성 규정"
 date:   2025-07-28 수정
 author: Jin
 excerpt_separator: "<!--more-->"
@@ -72,7 +72,9 @@ async def items_post(item: Item):
 ## 응답방식
 FastAPI를 이용한 AI 모델 API는 기본적으로 RESTful 응답을 사용합니다. 즉, 클라이언트가 요청을 보내면 서버가 처리를 완료한 후 JSON 형식으로 결과를 반환합니다. 요청형태 예시 코드를 참조해주세요.
 
-단, LLM(대형 언어 모델) API의 경우, 사용자 입력에 대한 응답이 길고 실시간 생성되는 특징이 있어 RESTful 방식만으로는 효율적이지 않을 수 있습니다. 이때는 SSE(Server-Sent Events) 또는 WebSocket과 같은 스트리밍 응답 방식을 고려할 수 있습니다. 서버 스팩 등 특별한 요청이 없으면 SSE 방식을 고려하고 해당 내용은 아래 링크를 통해 확인할 수 있습니다. 
+단, LLM(대형 언어 모델) API의 경우, 사용자 입력에 대한 응답이 길고 실시간 생성되는 특징이 있어 RESTful 방식만으로는 효율적이지 않을 수 있습니다. 이때는 SSE(Server-Sent Events) 또는 WebSocket과 같은 스트리밍 응답 방식을 고려할 수 있습니다. 서버 스팩 등 특별한 요청이 없으면 SSE 방식을 고려하고 해당 내용은 게시글 **[LLM API에서 한 글자씩 출력되는 실시간 응답 구현을 위한 SSE(Server-Sent Events) 가이드](https://aitheimc.github.io/explain-sse/)**을 통해 확인할 수 있습니다. 
+
+
 
 ## 도큐멘팅
 fastAPI는 아래 그림과 같이 “/redoc” url을 활용하면 내가 만든 API를  설명할 수 있는 웹페이지 생성 기능을 제공하고 있으며, 저희 팀은 이를 활용하고자 합니다. 본 기능은 fastapi에서 제공하는 객체선언기능과 함수별 도큐멘팅 기능을 활용하여 완성할 수 있으며, 마크다운 문법을 따릅니다.
