@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  AI 모델 배포를 위한 fastAPI 기본 작성 규정
+title:  [교육용] AI 모델 배포를 위한 fastAPI 기본 작성 규정
 date:   2025-07-28 수정
 author: Jin
 excerpt_separator: "<!--more-->"
@@ -10,7 +10,7 @@ tags:
     - model inference
 ---
 
-완성된 사내 AI 모듈을 테스트 용도로 배포할 때, 현재는 코드 전달 등 다양한 방식과 여러 프레임워크가 무질서하게 사용되고 있는 실정입니다. 이에 따라 별도 요청이 없는 한, Python FastAPI 프레임워크를 기본으로 사용하기로 하였습니다. 이에 따라, `http 프로토콜 메서드`, `요청형태`, `미들웨어`, `도큐멘팅` 4가지 요소에서 대한 최소한의 표준을 아래와 같이 권장합니다. 특히 `요청형태`는 별도의 요청이 없는 경우 반드시 준수해 주시기 바랍니다.
+완성된 사내 AI 모듈을 테스트 용도로 배포할 때, 현재는 코드 전달 등 다양한 방식과 여러 프레임워크가 무질서하게 사용되고 있는 실정입니다. 이에 따라 별도 요청이 없는 한, Python FastAPI 프레임워크를 기본으로 사용하기로 하였습니다. 이에 따라, `http 프로토콜 메서드`, `요청형태`, `응답방식`, `도큐멘팅` 4가지 요소에서 대한 최소한의 표준을 아래와 같이 권장합니다. 특히 `요청형태`는 별도의 요청이 없는 경우 반드시 준수해 주시기 바랍니다.
 
 <!--more-->
 
@@ -39,108 +39,46 @@ JSON 형식은 API 통신에서 널리 사용되는 표준 포맷으로, 다양�
 
 
 ```python
+from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-app = FastAPI()  # 아래 '4.1 객체선언기능'을 통해 상세 정보 확인 가능
+app = FastAPI()
 
-# JSON 형식의 요청 바디를 받을 모델 정의
+# 요청용 모델
 class Item(BaseModel):
     name: str
     description: str
     price: Optional[float] = 0.7
 
-@app.post("/items_post")
+# 응답용 모델 (필요에 따라 요청 모델과 동일하게 사용 가능)
+class ItemResponse(BaseModel):
+    name: str
+    description: str
+    price: float
+
+@app.post("/items_post", response_model=ItemResponse)
 async def items_post(item: Item):
-    return {
-        "name": item.name,
-        "description": item.description,
-        "price": item.price
-    }
+    # 여기서 필요한 추가 로직 처리 가능
+    return ItemResponse(
+        name=item.name,
+        description=item.description,
+        price=item.price
+    )
 ```
 
 [주의] 최근 JSON 방식에 대한 요청도 빈번히 일어나고 있으며 이에 따라,  pydantic패키지에 BaseModel 메서드를 이용하여 json 포멧으로 요청을 할 수 있게 코드를 구성할 경우, request 메서드를 통해 요청을 보낸다면 json.dumps를 통해 dict 타입을 str타입으로 변경하여 요청해야 합니다.
 
-## 미들웨어
-### 1. 로깅
-utils 디렉션에 [로깅 모듈](https://aitheimc.github.io/logutils_temp/)과 같이 logutils.py 파일을 작성한 후 로거를 불러와 사용합니다.
+## 응답방식
+FastAPI를 이용한 AI 모델 API는 기본적으로 RESTful 응답을 사용합니다. 즉, 클라이언트가 요청을 보내면 서버가 처리를 완료한 후 JSON 형식으로 결과를 반환합니다. 요청형태 예시 코드를 참조해주세요.
 
-### 2. CORS처리 (Cross-Origin Resource Sharing, 고객사 요청 및 필요에 따라 작성)
-접근 가능한 도메인, 프로토콜 메서드, 헤더를 정의하고 쿠키 및 인증 접근 허용하는 것을 설정하는 기능을 말합니다. 다른 요청이 없다면, 주로, 모든 도메인 허용, GET, POST 메서드 허용, 모든 헤더 허용, 자격증명 허용으로 설정하지만, 고객사와 커뮤니케이션 할때는 반드시 위 내용을 확인해 주세요. fastapi에서 CORS 처리하는 코드 예시는 아래와 같습니다.
+단, LLM(대형 언어 모델) API의 경우, 사용자 입력에 대한 응답이 길고 실시간 생성되는 특징이 있어 RESTful 방식만으로는 효율적이지 않을 수 있습니다. 이때는 SSE(Server-Sent Events) 또는 WebSocket과 같은 스트리밍 응답 방식을 고려할 수 있습니다. 서버 스팩 등 특별한 요청이 없으면 SSE 방식을 고려하고 해당 내용은 아래 링크를 통해 확인할 수 있습니다. 
 
-```python
-from fastapi.middleware.cors import CORSMiddleware
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],          # 모든 도메인에서 이 API로의 액세스 허용
-    allow_credentials=True,       # 자격 증명(예: 쿠키, HTTP 인증)을 허용
-    allow_methods=["GET", "POST"],# 모든 HTTP 메서드 (GET, POST, PUT, DELETE 등)를 허용
-    allow_headers=["authorization"],          # 모든 헤더를 허용
-)
-
-```
-
-### 3. 인증
-인증은 여러 방식이 있지만, fastAPI를 활용한 시크릿키 적용 혹은 IP 허용만 설명합니다. 다른 방식으로 요청이 오면 개발팀과 논의하고 가능한 수준에서 작성합니다. 
-#### 시크릿키 적용
-헤더에 secret-key를 만들어 전달하는 방식은 아래 코드와 같습니다. 
-
-```python
-from fastapi import FastAPI, Form, Header, HTTPException
-
-app = FastAPI() # 아래 '4.1 객체선언기능'을 통해 상세 정보 확인 가능
-
-@app.post("/items_post")
-async def items_post(
-    name: str = Form(...), 
-    description: str = Form(...), 
-    price: float = Form(...).
-    secret_key: str = Header(None, description="secret key")
-    ):
-
-    if secret_key !="{인증 키}":
-        raise HTTPException(status_code=403, detail="Invalid secret-key")
-
-    return {
-        "name": name,
-        "description": description,
-        "price": price
-        }
-```
-
-위 API를 요청할떄 header 에 시크릿 키를 추가 합니다.
-```bash
-curl -X POST http://0.0.0.0:8080/item_post \
-     -H "Content-Type: application/json" \
-     -H "secret-key: your_secret_key" \
-     -d '{"name":"string", "description":"example", "price":0}'
-```
-
-#### IP 허용
-ip 허용을 위한 미들웨어는 BaseHTTPMiddleware를 상속받아 아래와 같이 객체를 만들어 사용할 수 있습니다.
-```python
-from starlette.middleware.base import BaseHTTPMiddleware
-
-ALLOWED_IPS = {"0.0.0.0", "0.0.0.1"}  # 허용할 IP 주소를 여기에 추가
-# IP 인증을위한 모듈
-class IPFilterMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
-        client_ip = request.client.host
-        if client_ip not in ALLOWED_IPS:
-            raise HTTPException(status_code=403, detail="Access forbidden")
-
-        response = await call_next(request)
-        return response
-
-app.add_middleware(IPFilterMiddleware)
-```
-
-### 4. 도큐멘팅
+## 도큐멘팅
 fastAPI는 아래 그림과 같이 “/redoc” url을 활용하면 내가 만든 API를  설명할 수 있는 웹페이지 생성 기능을 제공하고 있으며, 저희 팀은 이를 활용하고자 합니다. 본 기능은 fastapi에서 제공하는 객체선언기능과 함수별 도큐멘팅 기능을 활용하여 완성할 수 있으며, 마크다운 문법을 따릅니다.
 ![fastapi_redoc_sample](/images/jin/fastapi_redoc_sample.jpg)
 
-#### 4.1 객체선언기능
+### 객체선언기능
 FastAPI 매서드를 활용하여 app 객체를 선언할 때 `title`, `version`, `description` 옵션을 활용하면 API 전체를 설명할 수 있습니다. 활용 예시 코드는 아래와 같습니다.
 
 ```python
@@ -157,7 +95,7 @@ app = FastAPI(
 위 코드를 적용하였을 때 나타나는 웹페이지 일부는 아래 그림과 같습니다.
 ![fastapi_title](/images/jin/fastapi_title.png){: width="200px"}
 
-#### 함수별 도큐멘팅 기능
+### 함수별 도큐멘팅 기능
 python 코드 내에서 내가 작성한 함수를 설명하 듯 함수 선언문 아래 멀티라인 문자열(“”“ “”“)을 이용하고 안에 마크다운 문법을 사용하면 redoc 웹사이트 내 정리가 자동으로 완성 됩니다. 예시는 아래와 같습니다.
 
 ```python
