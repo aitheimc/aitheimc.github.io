@@ -70,40 +70,123 @@ LLM API나 실시간 애플리케이션에서 비동기 방식으로 스트리�
 |브라우저 지원|EventSource 내장|WebSocket 내장|
 
 ## FastAPI에서 한글자씩 출력되는 SSE 구현하기
-FastAPI의 StreamingResponse를 활용하면 LLM 한 글자씩 출력되는 스트리밍을 구현할 수 있으며, **SSE 표준 형식(event:, data:, 두 줄 개행)**을 준수하면 브라우저의 EventSource에서 안정적으로 처리할 수 있습니다. 아래는 SSE 기능이 가능하게 구성한 fastAPI 코드 예시 입니다.
+FastAPI의 `StreamingResponse`와 허깅페이스에서 제공하는 `TextIteratorStreamer` 함수 그리고 `threading` 을 활용하면 LLM 출력값이 한 글자씩 출력되는 스트리밍을 구현할 수 있으며, **SSE 표준 형식(event:, data:, 두 줄 개행)**을 준수하면 브라우저의 EventSource에서 안정적으로 처리할 수 있습니다. 아래는 SSE 기능이 가능하게 구성한 fastAPI 코드 예시 입니다.
 ```python
+from typing import Optional, Generator
+
+import json
+import threading
+
+import torch
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
-import time
-import json
+from pydantic import BaseModel
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    TextIteratorStreamer,
+)
 
 app = FastAPI()
 
-# SSE 형식으로 데이터를 한 글자씩 스트리밍
-def llm_sse_stream(text: str):
-    for idx, char in enumerate(text):
-        # SSE 표준: data 필드 + 두 줄 개행
-        yield f"id: {idx}\n"
-        yield f"event: message\n"
-        yield f"data: {json.dumps({'text': char})}\n\n"
-        time.sleep(0.1)  # 한 글자씩 전송되는 느낌
-    # 완료 이벤트
-    yield f"event: done\n"
-    yield f"data: {json.dumps({'msg': 'Streaming complete'})}\n\n"
 
-@app.get("/llm-sse")
-def stream_llm_sse():
-    return StreamingResponse(
-        llm_sse_stream("Hello, SSE streaming!"),
-        media_type="text/event-stream"  # SSE 표준 MIME 타입
+class LLMRequest(BaseModel):
+    """요청 데이터 모델 (LLM 입력값).
+
+    Attributes:
+        question (str): 모델에 전달할 질문.
+        max_tokens (Optional[int]): 최대 토큰 수. 기본값은 200.
+        temperature (Optional[float]): 샘플링 온도. 기본값은 0.7.
+        top_p (Optional[float]): nucleus sampling 확률. 기본값은 0.9.
+    """
+
+    question: str
+    max_tokens: Optional[int] = 200
+    temperature: Optional[float] = 0.7
+    top_p: Optional[float] = 0.9
+
+
+# Hugging Face 모델 로드
+MODEL_NAME = "google/gemma-3-12b-it"
+TOKENIZER = AutoTokenizer.from_pretrained(
+    MODEL_NAME,
+    cache_dir="{path}",
+)
+MODEL = AutoModelForCausalLM.from_pretrained(
+    MODEL_NAME,
+    torch_dtype=torch.bfloat16,
+    device_map="auto",
+    cache_dir="{path}",
+)
+
+
+def generate_stream(
+    prompt: str,
+    max_new_tokens: int,
+    temperature: float,
+    top_p: float,
+) -> Generator[str, None, None]:
+    """LLM 출력 토큰을 SSE(Server-Sent Events) 형식으로 스트리밍.
+
+    Args:
+        prompt (str): 모델 입력 텍스트.
+        max_new_tokens (int): 최대 생성 토큰 수.
+        temperature (float): 샘플링 온도.
+        top_p (float): nucleus sampling 확률.
+
+    Yields:
+        str: SSE 형식의 문자열 메시지.
+    """
+    streamer = TextIteratorStreamer(
+        TOKENIZER,
+        skip_prompt=True,
+        skip_special_tokens=True,
     )
 
-```
+    inputs = TOKENIZER(prompt, return_tensors="pt").to(MODEL.device)
 
-이 구조를 따르면 클라이언트에서 다음과 같이 처리할 수 있습니다.
-```javascript
-const source = new EventSource("/llm-sse");
+    generation_kwargs = dict(
+        **inputs,
+        streamer=streamer,
+        max_new_tokens=max_new_tokens,
+        do_sample=True,
+        top_p=top_p,
+        temperature=temperature,
+    )
 
-source.addEventListener("message", (e) => console.log("char:", e.data));
-source.addEventListener("done", (e) => console.log("완료:", e.data));
+    thread = threading.Thread(
+        target=MODEL.generate,
+        kwargs=generation_kwargs,
+    )
+    thread.start()
+
+    for idx, token in enumerate(streamer):
+        yield f"id: {idx}\n"
+        yield "event: message\n"
+        yield f"data: {json.dumps({'text': token}, ensure_ascii=False)}\n\n"
+
+    yield "event: done\n"
+    yield f"data: {json.dumps({'msg': 'Streaming complete'})}\n\n"
+
+
+@app.post("/chat/stream")
+def stream_llm_sse(req: LLMRequest) -> StreamingResponse:
+    """LLM 질의에 대한 응답을 SSE 방식으로 반환.
+
+    Args:
+        req (LLMRequest): LLM 요청 데이터.
+
+    Returns:
+        StreamingResponse: SSE 스트리밍 응답.
+    """
+    return StreamingResponse(
+        generate_stream(
+            req.question,
+            req.max_tokens,
+            req.temperature,
+            req.top_p,
+        ),
+        media_type="text/event-stream",
+    )
+
 ```
